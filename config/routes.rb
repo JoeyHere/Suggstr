@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :medium_tags
+  resources :tags
+  resources :tags
+  resources :queued_media
+  resources :users
+  resources :media
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

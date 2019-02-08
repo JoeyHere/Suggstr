@@ -1,0 +1,2 @@
+class QueuedMediaController < ApplicationController
+end
