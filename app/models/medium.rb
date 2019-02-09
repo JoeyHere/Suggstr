@@ -6,5 +6,31 @@ class Medium < ActiveRecord::Base
   belongs_to :type
 
 
+    def self.podcasts
+      podcasts = self.all.select do |medium|
+        medium.type.name == "Podcast"
+        end 
+        podcasts.sort_by do |podcast|
+          podcast.title
+        end 
+      end 
+
+    def self.movies
+        movies = self.all.select do |medium|
+          medium.type.name == "Movie"
+          end 
+          movies.sort_by do |movie|
+            movie.title
+          end 
+        end 
+    
+    def self.tv_shows
+          tv_shows = self.all.select do |medium|
+            medium.type.name == "TV Show"
+            end 
+            tv_shows.sort_by do |show|
+              show.title
+            end 
+          end 
 
 end

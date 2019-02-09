@@ -469,4 +469,3 @@ podcasts = [
 Medium.create(movies)
 Medium.create(tv_shows)
 Medium.create(podcasts)
-Medium.create(podcasts)

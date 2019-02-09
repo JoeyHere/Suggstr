@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :queued_media
   resources :users
   resources :media
+  resources :podcasts
+  resources :movies
+  resources :tv_shows
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
