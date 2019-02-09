@@ -1,0 +1,8 @@
+
+<h2><%=@tag.name.capitalize %></h2>
+
+<ul>
+  <% @tag.media.each do |medium| %>
+    <li><%= link_to medium.title, medium %> - <small>(<%= link_to medium.type.name, medium.type %>)</small></li>
+  <% end %>
+</ul>

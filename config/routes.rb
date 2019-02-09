@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :types
   resources :medium_tags
   resources :tags
   resources :tags

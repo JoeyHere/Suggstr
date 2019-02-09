@@ -1,0 +1,11 @@
+
+<h2><%=@medium.title %></h2>
+
+<h3>Tags:</h3>
+<ul>
+<% @medium.tags.each do |tag| %>
+<li><%= link_to tag.name, tag %></li>
+<% end %>
+</ul>
+
+<p><%= @medium.users.length %> users have this in their queue</p>

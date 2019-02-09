@@ -1,0 +1,13 @@
+
+<h3>Media</h3>
+
+<ul>
+  <% @media.each do |medium| %>
+        <li>
+          <%=link_to medium.title, medium %>  - <small>(<%= link_to medium.type.name, medium.type %>)</small>
+        </li>
+      <br>
+  <% end %>
+</ul>
+
+<%=link_to "CREATE NEW", new_medium_path %>
