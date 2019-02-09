@@ -8,4 +8,4 @@
 <% end %>
 </ul>
 
-<p><%= @medium.users.length %> users have this in their queue</p>
+<p><%= pluralize(@medium.users.length, "user",) %> have this in their queue</p>
