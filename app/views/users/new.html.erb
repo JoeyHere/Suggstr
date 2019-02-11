@@ -1,5 +1,14 @@
-<h1>Sign up or Sign in</h1>
 
+<%if logged_in? %>
+<h1>Hi <%= current_user.name %>!</h1>
+<% else %>
+
+
+
+<h1>Sign up up to Suggstr</h1>
+<h3>And start suggstng!</h3>
+
+  <br>
 
 
   <% if flash[:errors] %>
@@ -8,9 +17,12 @@
     <% flash[:errors].each do |error| %>
     <li><%= error %></li>
     <% end %>
+    </div></font>
     </ul>
     </font></div>
   <% end %>
+
+
 
 <%= form_for @user do |f| %>
     <%= f.label :name, "Name:" %>
@@ -18,5 +30,11 @@
     <%= f.label :password, "Password:" %>
     <%= f.password_field :password %><br>
 
-    <%= f.submit %>
+    <%= f.submit "Sign up" %>
+<% end %>
+
+<p>Already have an account?
+<%= link_to "Click here to login", login_path %>
+</p>
+
 <% end %>

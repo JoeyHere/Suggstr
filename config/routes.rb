@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get '/signup', to: 'users#new'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+
   root 'users#new'
   resources :types
   resources :medium_tags
@@ -11,6 +16,11 @@ Rails.application.routes.draw do
   resources :movies
   resources :tv_shows
   resources :video_games
+
+  post 'user/:user_id/:medium_id/up', to: 'users#move_up', as: 'move_medium_up'
+  post 'user/:user_id/:medium_id/down', to: 'users#move_down', as: 'move_medium_down'
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

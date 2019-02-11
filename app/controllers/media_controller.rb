@@ -30,6 +30,7 @@ class MediaController < ApplicationController
       end
 
       @medium.save
+      current_user.media << @medium
       redirect_to @medium
     end
   end
