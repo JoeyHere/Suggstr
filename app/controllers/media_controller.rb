@@ -14,8 +14,18 @@ class MediaController < ApplicationController
   end
 
   def create
-    new_medium = Medium.new(medium_params)
-    redirect_to new_medium
+    medium = Medium.find_or_create_by(medium_params)
+    tags = params[:tags].split(",").map {|tag| tag.downcase}
+
+    if tags.length > 0
+      tags.each do |tag|
+        add_tag = Tag.find_or_create_by(name: tag)
+        medium.tags << add_tag if !medium.tags.include?(add_tag)
+      end
+    end
+
+    medium.save
+    redirect_to medium
   end
 
   private

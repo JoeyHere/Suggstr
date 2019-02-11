@@ -1,10 +1,25 @@
-<h1><%= "#{@user.name}'s List" %></h1>
+
+<h2><%=@user.name%></h2>
+
+<h3>Queued medium:</h3>
 
 <ul>
+<% @media.each do |medium| %>
+<%=medium.title%>
 
-<% @user.media.each do |medium| %>
-<li><%= "#{medium.title} - #{medium.type}" %></li>
+<%= form_tag "/user/#{@user.id}/#{medium.id}/up", method: 'post', class:'form-inline' do %>
+	<%= submit_tag 'Move up' %>
 <% end %>
 
+<%= form_tag "/user/#{@user.id}/#{medium.id}/down", method: 'post', class:'form-inline' do %>
+	<%= submit_tag 'Move down' %>
+<% end %>
 
+<% end %>
 </ul>
+
+
+<h3>Browse:</h3>
+<%= form_tag media_path, method: 'get', class:'form-inline' do %>
+	<%= submit_tag 'Browse' %>
+<% end %>
