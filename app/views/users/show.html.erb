@@ -1,0 +1,10 @@
+<h1><%= "#{@user.name}'s List" %></h1>
+
+<ul>
+
+<% @user.media.each do |medium| %>
+<li><%= "#{medium.title} - #{medium.type}" %></li>
+<% end %>
+
+
+</ul>
