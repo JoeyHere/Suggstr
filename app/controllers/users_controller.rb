@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def create
 
-      @user = User.find_or_create_by(user_params)
+      @user = User.create(user_params)
       if @user.valid?
           redirect_to user_path(@user)
       else
