@@ -1,5 +1,17 @@
 <h1>Sign up or Sign in</h1>
 
+  
+  
+  <% if flash[:errors] %>
+    <font color="red"><div class="notice">
+    <ul>
+    <% flash[:errors].each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+    </div><font>
+    </ul>
+  <% end %>
+
 <%= form_for @user do |f| %>
     <%= f.label :name, "Name:" %>
     <%= f.text_field :name %><br>

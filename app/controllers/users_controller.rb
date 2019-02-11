@@ -7,9 +7,11 @@ class UsersController < ApplicationController
 
     def create 
         @user = User.find_or_create_by(user_params)
-        if @user.save
+        if @user.valid?
             redirect_to user_path(@user)
         else
+            flash[:errors] = @user.errors.full_messages
+
             redirect_to '/'
         end 
 
