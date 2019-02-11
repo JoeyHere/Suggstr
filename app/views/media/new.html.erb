@@ -3,8 +3,8 @@
 
 <%= form_for @medium do |f| %>
 
-  <%= f.label :title %>
-  <input list="medium-titles" id="medium-choice" name="title" value=<%=@medium.title if @medium.title %> >
+  <%= f.label  "Title" %>
+  <input list="medium-titles" id="medium-choice" name="medium[title]" value=<%=@medium.title if @medium.title %> >
 
   <datalist id="medium-titles">
     <% Medium.all.each do |m| %>
@@ -22,7 +22,7 @@
   <div class="selectize">
     <div class="selectize-tags" style="display: block; visibility: visible; width: 260px; top: 38px; left: 0px;">
       <label for="input-tags">Add tags:</label>
-      <input type="text" id="input-tags" class="default" value="">
+      <input type="text" id="input-tags" class="default" name="tags" value="">
     </div>
     <script>
       $('#input-tags').selectize({
