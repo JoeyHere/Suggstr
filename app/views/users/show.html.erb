@@ -1,25 +1,26 @@
 
-<h2><%=current_user.name%></h2>
+<h2><%=@user.name%></h2>
 
-<h3>Queued medium:</h3>
+<h3>Que:</h3>
 
 <ul>
 <% @media.each do |medium| %>
-<%=medium.title%>
+<%=link_to "#{medium.title} - (#{medium.type.name})", medium %>
 
-<%= form_tag "/user/#{@user.id}/#{medium.id}/up", method: 'post', class:'form-inline' do %>
-	<%= submit_tag 'Move up' %>
-<% end %>
+<%= button_to "Up" , "/user/#{@user.id}/#{medium.id}/up", method: 'post', class: 'form-inline btn btn-info btn-sm' %>
 
-<%= form_tag "/user/#{@user.id}/#{medium.id}/down", method: 'post', class:'form-inline' do %>
-	<%= submit_tag 'Move down' %>
-<% end %>
+
+<%= button_to "Down" , "/user/#{@user.id}/#{medium.id}/down", method: 'post', class: 'form-inline btn btn-info btn-sm' %>
+
 
 <% end %>
 </ul>
 
+<% if current_user == @user %>
+<%= button_to  "Add to queue", new_medium_path, method: :get %>
+<% end %>
 
-<h3>Browse:</h3>
+<!-- <h3>Browse:</h3>
 <%= form_tag media_path, method: 'get', class:'form-inline' do %>
 	<%= submit_tag 'Browse' %>
-<% end %>
+<% end %>  -->

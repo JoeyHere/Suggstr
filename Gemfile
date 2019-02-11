@@ -46,4 +46,6 @@ group :development do
 
 
   gem "selectize-rails"
+
+  gem 'bootstrap'
 end

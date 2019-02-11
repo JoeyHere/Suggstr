@@ -18,7 +18,7 @@
 
   <datalist id="medium-titles">
     <% Medium.all.sort_by{|m| m.title}.each do |m| %>
-        <option value="<%= m.title %>" >
+        <option value="<%= m.title %> (<%= m.type.name %>)" >
     <% end %>
   </datalist>
 
@@ -50,5 +50,5 @@
 
   <br>
 
-  <%= button_to "Add", f.submit %>
+  <%= button_to "Add", f.submit, class: 'btn btn-success'  %>
 <% end %>
