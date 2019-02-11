@@ -6,9 +6,9 @@ Tag.destroy_all
 QueuedMedium.destroy_all
 Type.destroy_all
 
-User.create(name: "Joey")
-User.create(name: "Shane")
-User.create(name: "Song")
+User.create(name: "Joey", password: "password")
+User.create(name: "Shane", password: "password")
+User.create(name: "Song", password: "password")
 
 Type.create(name: "Book")
 Type.create(name: "TV Show")

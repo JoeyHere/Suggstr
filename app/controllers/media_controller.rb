@@ -30,7 +30,8 @@ class MediaController < ApplicationController
       end
 
       @medium.save
-      current_user.media << @medium
+      QueuedMedium.create(user_id:current_user.id, medium_id:@medium.id)
+      #current_user.media << @medium
       redirect_to @medium
     end
   end
