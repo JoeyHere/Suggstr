@@ -18,7 +18,7 @@
 
   <datalist id="medium-titles">
     <% Medium.all.sort_by{|m| m.title}.each do |m| %>
-        <option value="<%= m.title %> (<%= m.type.name %>)" >
+        <option value="<%= m.title %>" >
     <% end %>
   </datalist>
 
