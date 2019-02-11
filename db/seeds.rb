@@ -577,6 +577,7 @@ Medium.create(tv_shows)
 Medium.create(podcasts)
 Medium.create(games)
 
+
 queued_media = [
   {user_id: User.first.id, medium_id: Medium.first.id},
   {user_id: User.first.id, medium_id: Medium.second.id},

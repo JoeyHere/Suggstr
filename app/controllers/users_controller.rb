@@ -19,7 +19,7 @@ class UsersController < ApplicationController
           flash[:errors] = @user.errors.full_messages
 
           redirect_to '/'
-      end 
+      end
   end
 
   def show
