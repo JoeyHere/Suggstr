@@ -1,8 +1,27 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show]
+  before_action :find_user, only: [:show]
 
   def index
     @users = User.all
+  end
+
+  def new
+      @user = User.new
+  end
+
+  def create
+      @user = User.find_or_create_by(user_params)
+      if @user.valid?
+          redirect_to user_path(@user)
+      else
+          flash[:errors] = @user.errors.full_messages
+
+          redirect_to '/'
+      end
+
+      def show
+
+      end
   end
 
   def show
@@ -26,9 +45,14 @@ class UsersController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.find(params[:id])
+  def user_params
+      params.require(:user).permit(
+          :name,
+          :password
+      )
   end
 
-
+  def find_user
+      @user = User.find(params[:id])
+  end
 end

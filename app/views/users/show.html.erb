@@ -5,7 +5,7 @@
 
 <ul>
 <% @media.each do |medium| %>
-<li><%= link_to medium.title, medium %></li>
+<li><%= "#{medium.title} - #{medium.type}" %></li>
 
 <%= form_tag "/user/#{@user.id}/#{medium.id}/up", method: 'post', class:'form-inline' do %>
 	<%= submit_tag 'Move up' %>

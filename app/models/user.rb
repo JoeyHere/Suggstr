@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   has_many :queued_media
   has_many :media, through: :queued_media
+  validates :name, presence: true
+  validates :name, uniqueness: { case_sensitive: false }
+  validates :password, presence: true
 
   def sorted_queued_list
     self.reload
@@ -33,5 +36,4 @@ class User < ActiveRecord::Base
     old_queued_medium.update(priority_score: new_queued_medium.priority_score)
     new_queued_medium.update(priority_score: old_priority_score)
   end
-
-end
+e

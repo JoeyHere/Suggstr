@@ -9,37 +9,37 @@ class Medium < ActiveRecord::Base
     def self.podcasts
       podcasts = self.all.select do |medium|
         medium.type.name == "Podcast"
-        end 
+        end
         podcasts.sort_by do |podcast|
           podcast.title
-        end 
-      end 
+        end
+      end
 
     def self.movies
         movies = self.all.select do |medium|
           medium.type.name == "Movie"
-          end 
+          end
           movies.sort_by do |movie|
             movie.title
-          end 
-        end 
-    
+          end
+        end
+
     def self.tv_shows
           tv_shows = self.all.select do |medium|
             medium.type.name == "TV Show"
-            end 
+            end
             tv_shows.sort_by do |show|
               show.title
             end 
-          end 
+          end
 
     def self.video_games
           video_games = self.all.select do |medium|
             medium.type.name == "Video Game"
-            end 
+            end
             video_games.sort_by do |game|
               game.title
-            end 
-          end 
+            end
+          end
 
 end
