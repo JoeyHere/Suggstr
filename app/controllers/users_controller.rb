@@ -3,9 +3,9 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
-    end 
+    end
 
-    def create 
+    def create
         @user = User.find_or_create_by(user_params)
         if @user.valid?
             redirect_to user_path(@user)
@@ -13,11 +13,11 @@ class UsersController < ApplicationController
             flash[:errors] = @user.errors.full_messages
 
             redirect_to '/'
-        end 
+        end
+    end
 
-        def show
 
-        end 
+    def show
     end 
 
 
@@ -28,9 +28,9 @@ class UsersController < ApplicationController
             :name,
             :password
         )
-    end 
+    end
 
     def find_user
         @user = User.find(params[:id])
-    end 
+    end
 end

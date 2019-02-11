@@ -1,6 +1,16 @@
 
 <h2>Add to queue:</h2>
 
+<% if flash[:errors] %>
+  <div class="notice"><font color="red">
+  <ul>
+  <% flash[:errors].each do |error| %>
+  <li><%= error %></li>
+  <% end %>
+  </ul>
+  </font></div>
+<% end %>
+
 <%= form_for @medium do |f| %>
 
   <%= f.label  "Title" %>

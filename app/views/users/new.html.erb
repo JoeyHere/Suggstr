@@ -1,15 +1,15 @@
 <h1>Sign up or Sign in</h1>
 
-  
-  
+
+
   <% if flash[:errors] %>
-    <font color="red"><div class="notice">
+    <div class="notice"><font color="red">
     <ul>
     <% flash[:errors].each do |error| %>
     <li><%= error %></li>
     <% end %>
-    </div><font>
     </ul>
+    </font></div>
   <% end %>
 
 <%= form_for @user do |f| %>
@@ -17,6 +17,6 @@
     <%= f.text_field :name %><br>
     <%= f.label :password, "Password:" %>
     <%= f.password_field :password %><br>
-   
+
     <%= f.submit %>
 <% end %>

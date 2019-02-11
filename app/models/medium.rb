@@ -5,6 +5,8 @@ class Medium < ActiveRecord::Base
   has_many :users, through: :queued_media
   belongs_to :type
 
+  validates :title, presence: true 
+
 
     def self.podcasts
       podcasts = self.all.select do |medium|
@@ -30,7 +32,7 @@ class Medium < ActiveRecord::Base
             end
             tv_shows.sort_by do |show|
               show.title
-            end 
+            end
           end
 
     def self.video_games
