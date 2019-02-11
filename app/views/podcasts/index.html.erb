@@ -1,7 +1,8 @@
 <h1>Podcasts</h1>
 
-<ol>
+<ul>
 <% @podcasts.each do |podcast| %>
-<li><%= podcast.title %></li>
+<li><%=link_to podcast.title, medium_path(podcast) %></li>
+<br>
 <% end %>
-</ol>
+</ul>

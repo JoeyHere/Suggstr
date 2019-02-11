@@ -2,6 +2,8 @@
 
 <ul>
 <% @tv_shows.each do |show| %>
-<li><%= show.title %></li>
+<li><%=link_to show.title, medium_path(show) %></li>
+<br>
 <% end %>
+
 </ul>

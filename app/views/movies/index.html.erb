@@ -2,6 +2,7 @@
 
 <ul>
 <% @movies.each do |movie| %>
-<li><%= movie.title %></li>
+<li><%= link_to movie.title, medium_path(movie) %></li>
+<br>
 <% end %>
 </ul>

@@ -5,5 +5,4 @@ class PodcastsController < ApplicationController
     @podcasts = Medium.podcasts
  end 
 
-
 end
