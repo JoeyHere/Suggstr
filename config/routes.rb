@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'media#index'
+  root 'users#new'
   resources :types
   resources :medium_tags
   resources :tags
