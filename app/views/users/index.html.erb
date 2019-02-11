@@ -1,0 +1,11 @@
+
+<h3>User</h3>
+
+<ul>
+  <% @users.each do |user| %>
+        <li>
+          <%=link_to user.name, user %>
+        </li>
+      <br>
+  <% end %>
+</ul>

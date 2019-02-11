@@ -12,6 +12,11 @@ Rails.application.routes.draw do
   resources :tv_shows
   resources :video_games
 
+  post 'user/:user_id/:medium_id/up', to: 'users#move_up', as: 'move_medium_up'
+  post 'user/:user_id/:medium_id/down', to: 'users#move_down', as: 'move_medium_down'
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -7,6 +7,8 @@ QueuedMedium.destroy_all
 Type.destroy_all
 
 User.create(name: "Joey")
+User.create(name: "Shane")
+User.create(name: "Song")
 
 Type.create(name: "Book")
 Type.create(name: "TV Show")
@@ -328,7 +330,7 @@ tv_shows = [
     {title: "Father Ted", type: Type.second},
     {title: "How I Met Your Mother", type: Type.second},
     {title: "Firefly", type: Type.second}
- 
+
 ]
 
 podcasts = [
@@ -574,3 +576,17 @@ Medium.create(movies)
 Medium.create(tv_shows)
 Medium.create(podcasts)
 Medium.create(games)
+
+queued_media = [
+  {user_id: User.first.id, medium_id: Medium.first.id},
+  {user_id: User.first.id, medium_id: Medium.second.id},
+  {user_id: User.first.id, medium_id: Medium.third.id},
+  {user_id: User.second.id, medium_id: Medium.first.id},
+  {user_id: User.second.id, medium_id: Medium.second.id},
+  {user_id: User.second.id, medium_id: Medium.fourth.id},
+  {user_id: User.third.id, medium_id: Medium.first.id},
+  {user_id: User.third.id, medium_id: Medium.fourth.id},
+  {user_id: User.third.id, medium_id: Medium.fifth.id}
+]
+
+QueuedMedium.create(queued_media)
