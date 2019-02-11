@@ -9,6 +9,9 @@
 <body>
 
 
+
+<% if logged_in? %>
+
 <%= link_to "All Media", media_path %>
 -
 <%= link_to "Tags", tags_path %>
@@ -23,15 +26,9 @@
 -
 <%= link_to "Video Games", video_games_path %>
 -
-<% if logged_in? %>
-  <%= link_to "My Queue", current_user %>
+<%= link_to "My Queue", current_user %>
   -
-  <%= link_to "Log Out", logout_path, method: :delete %>
-
-  <% else %>
-  <%= link_to "Log in", login_path %>
-  -
-  <%= link_to "Sign up", new_user_path %>
+<%= link_to "Log Out", logout_path, method: :delete %>
 
 
 <% end %>
