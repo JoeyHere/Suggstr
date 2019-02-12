@@ -7,13 +7,13 @@
 <h3>You have nothing in your queue! Click below to add stuff! </h3>
 
 <% if current_user == @user %>
-<%= button_to  "Add to queue", new_medium_path, method: :get , class:'btn' %>
+<%= button_to  "Add to queue", new_medium_path, method: :get , class:'btn btn-primary' %>
 <% end %>
 
 <% else %>
 
 <% if current_user == @user %>
-<%= button_to  "Add to queue", new_medium_path, method: :get , class:'btn' %>
+<%= button_to  "Add to queue", new_medium_path, method: :get , class:'btn btn-primary' %>
 <% end %>
 
 <h3>Your current queue is:</h3>
@@ -33,9 +33,9 @@
 <th><%=link_to medium.title, medium%></th>
 <th><%=medium.type.name%></th>
 
-<th><%= button_to '🔼', "/user/#{@user.id}/#{medium.id}/up", method: 'post', class:'btn form-inline' %></th>
+<th><%= button_to '🔼', "/user/#{@user.id}/#{medium.id}/up", method: 'post', class:'btn btn-primary form-inline' %></th>
 
-<th><%= button_to  '🔽', "/user/#{@user.id}/#{medium.id}/down", method: 'post', class:'btn form-inline' %></th>
+<th><%= button_to  '🔽', "/user/#{@user.id}/#{medium.id}/down", method: 'post', class:'btn btn-primary form-inline' %></th>
 
 <th><%= button_to 'Completed', "/user/#{@user.id}/#{medium.id}/completed", method: 'post', class:'btn btn-success form-inline' %></th>
 

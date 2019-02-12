@@ -1,6 +1,10 @@
 
 <h2><%=@medium.title %> - <small>(<%=@medium.type.name %>)</small></h2>
 
+<% if !@medium.rating_history["Good"].nan? %>
+<h4><%= number_to_percentage(@medium.rating_history["Good"]*100, precision: 0) %> of people liked this <%= @medium.type.name %></h4>
+<% end %>
+
 <h3>Tags:</h3>
 
 <ul>
@@ -11,4 +15,4 @@
   <% end %>
 </ul>
 
-<p><%= pluralize(@medium.users.length, "user",) %> have this in their queue</p>
+<p><%= pluralize(@medium.users.length, "user") %> <%= @medium.users.length == 1 ? "has" : "have" %> this in their queue</p>
