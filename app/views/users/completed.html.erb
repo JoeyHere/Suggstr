@@ -1,0 +1,7 @@
+<%= form_tag "/user/#{@queued_medium.user_id}/#{@queued_medium.medium_id}/rated", method:'post' do %>
+	<% RatingRecord.categories.each do |category| %>
+		<%=radio_button_tag 'category', category%><h3><%=category%></h3>
+		<% end %>
+
+	<%= submit_tag 'Done rating' %>
+<% end %>

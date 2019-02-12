@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190211141046) do
+ActiveRecord::Schema.define(version: 20190211213447) do
 
   create_table "media", force: :cascade do |t|
     t.string   "title"
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(version: 20190211141046) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.float    "priority_score"
+  end
+
+  create_table "rating_records", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "medium_id"
+    t.string  "rated_score"
   end
 
   create_table "tags", force: :cascade do |t|

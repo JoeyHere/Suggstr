@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   post 'user/:user_id/:medium_id/up', to: 'users#move_up', as: 'move_medium_up'
   post 'user/:user_id/:medium_id/down', to: 'users#move_down', as: 'move_medium_down'
+  post 'user/:user_id/:medium_id/completed', to: 'users#completed', as: 'medium_completed'
+  post 'user/:user_id/:medium_id/rated', to: 'users#rated', as: 'medium_rated'
 
 
 

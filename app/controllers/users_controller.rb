@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :find_user, only: [:show]
+  before_action :find_user, only: [:show, :move_up, :move_down, :completed, :rated]
 
   def index
     @users = User.all
@@ -18,25 +18,33 @@ class UsersController < ApplicationController
           flash[:errors] = @user.errors.full_messages
 
           redirect_to '/'
-      end 
+      end
   end
 
   def show
     @media = @user.sorted_queued_list
+    @completed_media = @user.completed_queued_list
   end
 
   def move_up
-    @user = User.find(params[:user_id])
     @medium = Medium.find(params[:medium_id])
     @user.move_medium_up(@medium)
-    #byebug
     redirect_to user_path(@user)
   end
 
   def move_down
-    @user = User.find(params[:user_id])
     @medium = Medium.find(params[:medium_id])
     @user.move_medium_down(@medium)
+    redirect_to user_path(@user)
+  end
+
+  def completed
+    @queued_medium = QueuedMedium.find_by(medium_id: params[:medium_id], user_id: params[:user_id])
+    @queued_medium.update(completed:true)
+  end
+
+  def rated
+    RatingRecord.create(user_id: params[:user_id], medium_id: params[:medium_id], rated_score: params[:category])
     redirect_to user_path(@user)
   end
 
@@ -50,6 +58,6 @@ class UsersController < ApplicationController
   end
 
   def find_user
-      @user = User.find(params[:id])
+      @user = current_user
   end
 end

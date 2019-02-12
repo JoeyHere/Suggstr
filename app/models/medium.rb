@@ -5,7 +5,9 @@ class Medium < ActiveRecord::Base
   has_many :users, through: :queued_media
   belongs_to :type
 
-  validates :title, presence: true 
+  has_many :rating_records
+
+  validates :title, presence: true
 
 
     def self.podcasts
@@ -44,4 +46,14 @@ class Medium < ActiveRecord::Base
             end
           end
 
+    def rating_history
+      self.reload
+      rating_history = {}
+      #number of people rated
+      total = self.rating_records.size
+      RatingRecord.categories.each do |category|
+        rating_history[category] = self.rating_records.select{|rr| rr.rated_score == category}.count.to_f/total
+      end
+      return rating_history
+    end
 end

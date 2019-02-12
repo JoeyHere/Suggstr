@@ -3,21 +3,70 @@
 
 <h3>Queued medium:</h3>
 
-<ul>
+<table>
+  <tr>
+    <th>Medium</th>
+    <th>Type</th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+    <th> </th>
+  </tr>
+
 <% @media.each do |medium| %>
-<%=medium.title%>
+<tr>
+<th><%=medium.title%></th>
+<th><%=medium.type.name%></th>
 
-<%= form_tag "/user/#{@user.id}/#{medium.id}/up", method: 'post', class:'form-inline' do %>
+<th><%= form_tag "/user/#{@user.id}/#{medium.id}/up", method: 'post', class:'form-inline' do %>
 	<%= submit_tag 'Move up' %>
-<% end %>
+<% end %></th>
 
-<%= form_tag "/user/#{@user.id}/#{medium.id}/down", method: 'post', class:'form-inline' do %>
+<th><%= form_tag "/user/#{@user.id}/#{medium.id}/down", method: 'post', class:'form-inline' do %>
 	<%= submit_tag 'Move down' %>
+<% end %></th>
+
+<th><%= form_tag "/user/#{@user.id}/#{medium.id}/completed", method: 'post', class:'form-inline' do %>
+	<%= submit_tag 'Completed' %>
+<% end %></th>
+
+<%queued_medium_id = QueuedMedium.find_by(medium_id: medium.id, user_id: @user.id).id%>
+<th><%= form_tag "/queued_media/#{queued_medium_id}", method: 'delete', class:'form-inline' do %>
+	<%= submit_tag 'Delete' %>
+<% end %></th>
+
+</tr>
+<% end %>
+</table>
+
+<br><br>
+
+<h3>Completed list: </h3>
+
+<table>
+  <tr>
+    <th>Medium</th>
+    <th>Type</th>
+    <th>Your rating</th>
+    <% RatingRecord.categories.each do |c| %>
+     <th><%=c%></th>
+    <% end %>
+  </tr>
+
+<% @completed_media.each do |medium| %>
+<tr>
+<th><%=medium.title%></th>
+<th><%=medium.type.name%></th>
+<%@rating_record = RatingRecord.find_by(user_id: @user.id, medium_id: medium.id)%>
+<th><%=@rating_record.rated_score%></th>
+<% RatingRecord.categories.each do |c| %>
+  <th><%=(medium.rating_history[c].*100).round%>%</th>
+<% end %>
 <% end %>
 
-<% end %>
-</ul>
+</table>
 
+<br><br>
 
 <h3>Browse:</h3>
 <%= form_tag media_path, method: 'get', class:'form-inline' do %>

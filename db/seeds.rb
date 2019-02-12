@@ -577,16 +577,17 @@ Medium.create(tv_shows)
 Medium.create(podcasts)
 Medium.create(games)
 
-queued_media = [
-  {user_id: User.first.id, medium_id: Medium.first.id},
-  {user_id: User.first.id, medium_id: Medium.second.id},
-  {user_id: User.first.id, medium_id: Medium.third.id},
-  {user_id: User.second.id, medium_id: Medium.first.id},
-  {user_id: User.second.id, medium_id: Medium.second.id},
-  {user_id: User.second.id, medium_id: Medium.fourth.id},
-  {user_id: User.third.id, medium_id: Medium.first.id},
-  {user_id: User.third.id, medium_id: Medium.fourth.id},
-  {user_id: User.third.id, medium_id: Medium.fifth.id}
-]
+def random_medium_generator(x)
+  medium_ids = []
+  Medium.all.each {|m| medium_ids << m.id }
+  return medium_ids.sample(x)
+end
+
+queued_media = []
+User.all.each do |user|
+  random_medium_generator(20).each do |medium_id|
+    queued_media << {user_id: user.id, medium_id: medium_id}
+  end
+end
 
 QueuedMedium.create(queued_media)
