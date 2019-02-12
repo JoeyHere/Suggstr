@@ -12,13 +12,12 @@
 
 <ul>
 <% @media.each do |medium| %>
-<%=link_to "#{medium.title} - (#{medium.type.name})", medium %>
+<%=link_to "#{medium.title} - (#{medium.type.name})", medium, class: 'form-inline' %>
 
+<% if current_user == @user %>
 <%= button_to "Up" , "/user/#{@user.id}/#{medium.id}/up", method: 'post', class: 'form-inline btn btn-info btn-sm' %>
-
-
 <%= button_to "Down" , "/user/#{@user.id}/#{medium.id}/down", method: 'post', class: 'form-inline btn btn-info btn-sm' %>
-
+<% end %>
 
 <% end %>
 </ul>

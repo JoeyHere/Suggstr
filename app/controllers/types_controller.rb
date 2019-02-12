@@ -1,13 +1,14 @@
 class TypesController < ApplicationController
 
-    before_action :set_type, only: [:show]
+  before_action :set_type, only: [:show]
 
-    def show
-    end
+  def show
+  end
 
-    private
+  private
 
-    def set_type
-      @type = Type.find(params[:id])
-    end
+  def set_type
+    @type = Type.find(params[:id])
+  end
+
 end
