@@ -1,18 +1,16 @@
-
 <%if logged_in? %>
 <h1>Hi <%= current_user.name %>!</h1>
 <% else %>
 
 
-
-<h1>Sign up up to Suggstr</h1>
+<h1>Sign up to Suggstr</h1>
 <h3>And start suggstng!</h3>
 
   <br>
 
 
   <% if flash[:errors] %>
-    <div class="notice"><font color="red">
+    <div><font color="red">
     <ul>
     <% flash[:errors].each do |error| %>
     <li><%= error %></li>

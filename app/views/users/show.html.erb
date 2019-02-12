@@ -1,7 +1,14 @@
 
-<h2><%=current_user.name%></h2>
+<h2><%=@user.name%></h2>
 
-<h3>Queued medium:</h3>
+<% if @media.length == 0 %>
+
+
+<h3>You have nothing in your queue! Click below to add stuff! </h3>
+
+<% else %>
+
+<h3>Your current queue is:</h3>
 
 <table>
   <tr>
@@ -15,7 +22,7 @@
 
 <% @media.each do |medium| %>
 <tr>
-<th><%=medium.title%></th>
+<th><%=link_to medium.title, medium%></th>
 <th><%=medium.type.name%></th>
 
 <th><%= form_tag "/user/#{@user.id}/#{medium.id}/up", method: 'post', class:'form-inline' do %>
@@ -62,13 +69,16 @@
 <% RatingRecord.categories.each do |c| %>
   <th><%=(medium.rating_history[c].*100).round%>%</th>
 <% end %>
+</table>
 <% end %>
 
-</table>
+<% end %>
 
-<br><br>
+<% if current_user == @user %>
+<%= button_to  "Add to queue", new_medium_path, method: :get %>
+<% end %>
 
-<h3>Browse:</h3>
+<!-- <h3>Browse:</h3>
 <%= form_tag media_path, method: 'get', class:'form-inline' do %>
 	<%= submit_tag 'Browse' %>
-<% end %>
+<% end %>  -->

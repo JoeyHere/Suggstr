@@ -38,13 +38,13 @@ class Medium < ActiveRecord::Base
           end
 
     def self.video_games
-          video_games = self.all.select do |medium|
-            medium.type.name == "Video Game"
-            end
-            video_games.sort_by do |game|
-              game.title
-            end
-          end
+      video_games = self.all.select do |medium|
+        medium.type.name == "Video Game"
+      end
+      video_games.sort_by do |game|
+        game.title
+      end
+    end
 
     def rating_history
       self.reload

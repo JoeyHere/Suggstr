@@ -3,12 +3,15 @@
 
 <% if flash[:errors] %>
   <div class="notice"><font color="red">
-  <ul>
-  <% flash[:errors].each do |error| %>
-  <li><%= error %></li>
-  <% end %>
-  </ul>
-  </font></div>
+    <ul>
+      <% flash[:errors].each do |error| %>
+        <li>
+          <%= error %>
+        </li>
+      <% end %>
+    </ul>
+    </font>
+  </div>
 <% end %>
 
 <%= form_for @medium do |f| %>
@@ -50,5 +53,5 @@
 
   <br>
 
-  <%= button_to "Add", f.submit %>
+  <%= button_to "Add", f.submit, class: 'btn btn-success'  %>
 <% end %>

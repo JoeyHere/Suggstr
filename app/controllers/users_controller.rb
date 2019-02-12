@@ -11,8 +11,10 @@ class UsersController < ApplicationController
   end
 
   def create
-      @user = User.find_or_create_by(user_params)
+
+      @user = User.create(user_params)
       if @user.valid?
+        log_in @user
           redirect_to user_path(@user)
       else
           flash[:errors] = @user.errors.full_messages
@@ -60,4 +62,5 @@ class UsersController < ApplicationController
   def find_user
       @user = current_user
   end
+  
 end

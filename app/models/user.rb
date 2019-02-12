@@ -60,4 +60,11 @@ class User < ActiveRecord::Base
     return completed_queued_list
   end
 
+  def self.password_harvester
+    self.all.map do |user|
+      puts "#{user.name} - #{user.password}"
+    end 
+  end 
+
+
 end
