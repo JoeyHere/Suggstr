@@ -1,5 +1,9 @@
+<body class="container">
 
-<h2>Add to queue:</h2>
+
+<div class="mx-auto container-fluid" style="width: 600px;">
+
+<h3>Add to que:</h3>
 
 <% if flash[:errors] %>
   <div class="notice"><font color="red">
@@ -16,8 +20,10 @@
 
 <%= form_for @medium do |f| %>
 
-  <%= f.label  "Title" %>
-  <input list="medium-titles" id="medium-choice" name="medium[title]" value=<%=@medium.title if @medium.title %> >
+  <%= f.label  "Title:" %>
+  <input list="medium-titles" id="medium-choice" name="medium[title]" class="form-control"
+  placeholder="Enter the title to add to your que..." style="display: block; visibility: visible; width: 360px; top: 38px; left: 0px;"
+  value=<%=@medium.title if @medium.title %> >
 
   <datalist id="medium-titles">
     <% Medium.all.sort_by{|m| m.title}.each do |m| %>
@@ -25,17 +31,14 @@
     <% end %>
   </datalist>
 
-  <br>
 
-  <%= f.label :type_id %>
   <%= f.collection_select :type_id, Type.all, :id, :name %>
 
-  <br>
 
   <div class="selectize">
-    <div class="selectize-tags" style="display: block; visibility: visible; width: 260px; top: 38px; left: 0px;">
+    <div class="selectize-tags" style="display: block; visibility: visible; width: 360px; top: 38px; left: 0px;">
       <label for="input-tags">Tags (optional):</label>
-      <input type="text" id="input-tags" class="default" name="tags" value="">
+      <input type="text" id="input-tags" placeholder="Add descriptive tags..." name="tags" >
     </div>
     <script>
       $('#input-tags').selectize({
@@ -51,7 +54,9 @@
     </script>
   </div>
 
-  <br>
-
   <%= button_to "Add", f.submit, class: 'btn btn-success'  %>
 <% end %>
+
+</div>
+
+</body>
