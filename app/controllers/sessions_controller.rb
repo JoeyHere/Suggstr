@@ -4,8 +4,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(name: params[:session][:name])
-     if user && params[:session][:password] == user.password
+    user = User.find_by(email: params[:session][:email])
+     if user && user.authenticate(params[:session][:password])
       # log_out method in app/helpers/session_helper/rb
       log_in user
       redirect_to user
