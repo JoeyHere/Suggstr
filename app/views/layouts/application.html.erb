@@ -5,22 +5,92 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="https://blackrockdigital.github.io/startbootstrap-one-page-wonder/css/one-page-wonder.min.css" rel="stylesheet">
 </head>
 <body>
 
 
-
+<!-- Navigation -->
+<!-- Navigation for logged in userss-->
 <% if logged_in? %>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+<div class="container">
+  <a class="navbar-brand" href="<%=user_path(current_user)%>">My List</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<%= link_to "My Queue", current_user %>
-  -
-<%= link_to "Log Out", logout_path, method: :delete %>
+  <a class="navbar-brand" href="TO BE SET!!!!!!">Suggested to me</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
+  <%= link_to "History", user_history_path(current_user), method:'post', class: 'navbar-brand' %>
+  <button method='post' class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
+  <a class="navbar-brand" href="<%=media_path%>">Browse</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <a class="navbar-brand" href="<%=users_path%>">Top Suggstrrs</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <%= link_to "Log Out", logout_path, method:'delete', class: 'nav-link' %>
+      </li>
+    </ul>
+  </div>
+</div>
+</nav>
+<% else %>
+<!-- Navigation for none logged in userss-->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+<div class="container">
+  <a class="navbar-brand" href="#">Explore Suggstr</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="<%=signup_path%>">Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=login_path%>">Log In</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</nav>
 <% end %>
+
 
 
 <%= yield %>
 
+
+
+<!-- Footer -->
+<footer class="py-5 bg-black">
+<div class="container">
+<p class="m-0 text-center text-white small">Copyright &copy; SuggstrGang 2019</p>
+<p class="m-0 text-center text-white small">Powered by Ruby on Rails on Bootstrap</p>
+</div>
+<!-- /.container -->
+</footer>
 </body>
 </html>
