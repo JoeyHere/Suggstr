@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-   
+
   def new
   end
 
@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
      if user && user.authenticate(params[:session][:password])
       # log_out method in app/helpers/session_helper/rb
       log_in user
-      redirect_to user
+      redirect_to dashboard_path
      else
       flash.now[:danger] = "Login information not found. Please try again or sign up"
       render 'new'
@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
     log_out
     # log_out method in app/helpers/session_helper/rb
     redirect_to root_url
- 
+
   end
 
 end

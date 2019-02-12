@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :find_user, only: [:show, :move_up, :move_down, :completed, :rated, :history]
+  before_action :find_current_user, only: [:move_up, :move_down, :completed, :rated, :history, :dashboard]
 
   def index
     @users = User.all
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       end
   end
 
-  def show
+  def dashboard
     @media = @user.sorted_queued_list
     @completed_media = @user.completed_queued_list
   end
@@ -53,6 +53,11 @@ class UsersController < ApplicationController
   def history
   end
 
+  def show
+    @user = User.find(params[:id])
+    @media = @user.sorted_queued_list
+  end
+
   private
 
   def user_params
@@ -63,7 +68,7 @@ class UsersController < ApplicationController
       )
   end
 
-  def find_user
+  def find_current_user
       @user = current_user
   end
 
