@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :find_user, only: [:show, :move_up, :move_down, :completed, :rated]
+  before_action :find_user, only: [:show, :move_up, :move_down, :completed, :rated, :history]
 
   def index
     @users = User.all
@@ -50,6 +50,9 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
+  def history
+  end
+
   private
 
   def user_params
@@ -63,5 +66,5 @@ class UsersController < ApplicationController
   def find_user
       @user = current_user
   end
-  
+
 end

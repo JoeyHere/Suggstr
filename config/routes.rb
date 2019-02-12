@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
   post 'user/:user_id/:medium_id/down', to: 'users#move_down', as: 'move_medium_down'
   post 'user/:user_id/:medium_id/completed', to: 'users#completed', as: 'medium_completed'
   post 'user/:user_id/:medium_id/rated', to: 'users#rated', as: 'medium_rated'
+  post 'user/:user_id/history', to: 'users#history', as: 'user_history'
 
 
 
