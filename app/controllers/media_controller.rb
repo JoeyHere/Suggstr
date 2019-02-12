@@ -30,7 +30,9 @@ class MediaController < ApplicationController
       end
 
       @medium.save
-      QueuedMedium.find_or_create_by(user_id:current_user.id, medium_id:@medium.id)
+      qmedia = QueuedMedium.find_or_create_by(user_id:current_user.id, medium_id:@medium.id)
+      qmedia.update(completed: false, priority_score:0) if qmedia[:completed] == true
+
       redirect_to current_user
     end
   end
