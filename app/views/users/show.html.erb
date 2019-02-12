@@ -1,7 +1,14 @@
 
 <h2><%=@user.name%></h2>
 
-<h3>Que:</h3>
+<% if @media.length == 0 %>
+
+
+<h3>You have nothing in your queue! Click below to add stuff! </h3>
+
+<% else %>
+
+<h3>Your current queue is:</h3>
 
 <ul>
 <% @media.each do |medium| %>
@@ -15,6 +22,8 @@
 
 <% end %>
 </ul>
+
+<% end %>
 
 <% if current_user == @user %>
 <%= button_to  "Add to queue", new_medium_path, method: :get %>

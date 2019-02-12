@@ -39,4 +39,11 @@ class User < ActiveRecord::Base
     new_queued_medium.update(priority_score: old_priority_score)
   end
 
+  def self.password_harvester
+    self.all.map do |user|
+      puts "#{user.name} - #{user.password}"
+    end 
+  end 
+
+
 end
