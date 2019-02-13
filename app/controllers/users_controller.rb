@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :find_user, only: [:show, :move_up, :move_down, :completed, :rated, :history]
+  before_action :find_current_user, only: [:move_up, :move_down, :completed, :rated, :history, :dashboard]
 
   def index
     @users = User.all
@@ -23,21 +23,25 @@ class UsersController < ApplicationController
       end
   end
 
-  def show
-    @media = @user.sorted_queued_list
-    @completed_media = @user.completed_queued_list
+  def dashboard
+    if logged_in?
+      @media = @user.sorted_queued_list
+      @completed_media = @user.completed_queued_list
+    else
+      redirect_to login_path
+    end
   end
 
   def move_up
     @medium = Medium.find(params[:medium_id])
     @user.move_medium_up(@medium)
-    redirect_to user_path(@user)
+    redirect_to dashboard_path
   end
 
   def move_down
     @medium = Medium.find(params[:medium_id])
     @user.move_medium_down(@medium)
-    redirect_to user_path(@user)
+    redirect_to dashboard_path
   end
 
   def completed
@@ -47,7 +51,7 @@ class UsersController < ApplicationController
 
   def rated
     RatingRecord.create(user_id: params[:user_id], medium_id: params[:medium_id], rated_score: params[:category])
-    redirect_to user_path(@user)
+    redirect_to dashboard_path
   end
 
   def history
@@ -56,6 +60,11 @@ class UsersController < ApplicationController
   end
 
   def suggestions
+  end
+
+  def show
+    @user = User.find(params[:id])
+    @media = @user.sorted_queued_list
   end
 
   private
@@ -68,7 +77,7 @@ class UsersController < ApplicationController
       )
   end
 
-  def find_user
+  def find_current_user
       @user = current_user
   end
 

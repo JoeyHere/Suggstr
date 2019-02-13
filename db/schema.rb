@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190212115550) do
+ActiveRecord::Schema.define(version: 20190213085742) do
 
   create_table "media", force: :cascade do |t|
     t.string   "title"
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(version: 20190212115550) do
     t.integer  "user_id"
     t.integer  "medium_id"
     t.string   "rated_score"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "suggestions", force: :cascade do |t|
+    t.integer  "medium_id"
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.string   "message"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

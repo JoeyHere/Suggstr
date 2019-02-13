@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :suggestions
+
   get '/suggstr', to:'wrapper#landing', as: 'landing'
   get '/goodbye', to:'wrapper#goodbye', as: 'goodbye'
   get '/learnmore', to:'wrapper#credit', as: 'credit'
@@ -8,6 +10,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  get '/dashboard', to: 'users#dashboard', as: 'dashboard'
 
   root 'users#new'
   resources :types

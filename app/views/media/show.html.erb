@@ -15,4 +15,27 @@
   <% end %>
 </ul>
 
+<%= form_for @medium do |f| %>
+<div class="selectize">
+  <div class="selectize-tags" style="display: block; visibility: visible; width: 360px; top: 38px; left: 0px;">
+    <label for="input-tags">Tags:</label>
+    <input type="text" id="input-tags" name="tags" >
+  </div>
+  <script>
+    $('#input-tags').selectize({
+        delimiter: ',',
+        persist: false,
+        create: function(input) {
+            return {
+                value: input,
+                text: input
+            }
+        }
+    });
+  </script>
+</div>
+
+<%= button_to "Add", f.submit, class: 'btn btn-success'  %>
+<% end %>
+
 <p><%= pluralize(@medium.users.length, "user") %> <%= @medium.users.length == 1 ? "has" : "have" %> this in their queue</p>

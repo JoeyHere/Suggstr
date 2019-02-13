@@ -5,7 +5,7 @@ class QueuedMediaController < ApplicationController
 
   def destroy
     @queued_medium.destroy
-    redirect_to user_path(@user)
+    redirect_to dashboard_path
   end
 
   private
