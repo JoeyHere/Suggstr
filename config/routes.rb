@@ -30,7 +30,8 @@ Rails.application.routes.draw do
   post 'user/:user_id/:medium_id/completed', to: 'users#completed', as: 'medium_completed'
   post 'user/:user_id/:medium_id/rated', to: 'users#rated', as: 'medium_rated'
   get 'user/:user_id/history', to: 'users#history', as: 'user_history'
-  get 'user/:user_id/suggestions', to: 'users#suggestions', as: 'user_suggestions'
+  # get 'user/:user_id', to: 'users#show', as: 'user_show'
+  get 'users/:id/suggestions', to: 'users#suggestions', as: 'user_suggestions'
 
 
 

@@ -1,1 +1,6 @@
-No one has suggested anything to you yet
+<%= @user.name %>
+<ul>
+<% @user.received_suggestions.each do |sug| %>
+<li><%= link_to sug.medium.title, sug %> (<%= sug.medium.type.name %>) was suggested by <%= sug.sender_object.name %> <%= time_ago_in_words(sug.created_at) %> ago. </li>
+<% end %>
+</ul>

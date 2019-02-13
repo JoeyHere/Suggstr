@@ -1,0 +1,26 @@
+
+<div>
+
+<h3>Add to que:</h3>
+
+<% if flash[:error] %>
+  <div class="notice"><font color="red">
+    <ul>
+        <li>
+          <%= flash[:error] %>
+        </li>
+      <% end %>
+    </ul>
+    </font>
+  </div>
+
+  <%= form_for @suggestion do |f| %>
+
+  <%= f.collection_select :receiver_id, User.all, :id, :email %>
+  <%= f.collection_select :medium_id, Medium.all, :id, :title %>
+  <%= f.text_area :message, placeholder:"Write your message to here." %>
+
+  <%= button_to "Add", f.submit, class: 'btn btn-success'  %>
+<% end %>
+
+</div>
