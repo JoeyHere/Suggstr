@@ -22,30 +22,12 @@
 <% if logged_in? %>
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
 <div class="container">
-  <a class="navbar-brand" href="<%=dashboard_path%>">My List</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <a class="navbar-brand" href="TO BE SET!!!!!!">Suggested to me</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <%= link_to "History", user_history_path(current_user), method:'post', class: 'navbar-brand' %>
-  <button method='post' class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <a class="navbar-brand" href="<%=media_path%>">Browse</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <a class="navbar-brand" href="<%=users_path%>">Top Suggstrrs</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <%= link_to "My List", user_path(current_user), method:'get', class: 'navbar-brand' %>
+  <%= link_to "Suggested to me", user_suggestions_path(current_user), method:'get', class: 'navbar-brand' %>
+  <%= link_to "History", user_history_path(current_user), method:'get', class: 'navbar-brand' %>
+  <%= link_to "Browse", media_path, method:'get', class: 'navbar-brand' %>
+  <%= link_to "Top Suggstrrs", users_path, method:'get', class: 'navbar-brand' %>
 
   <div class="collapse navbar-collapse" id="navbarResponsive">
     <ul class="navbar-nav ml-auto">
@@ -56,6 +38,7 @@
   </div>
 </div>
 </nav>
+
 <% else %>
 <!-- Navigation for none logged in userss-->
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
@@ -85,7 +68,8 @@
 
 
 <!-- Footer -->
-<footer class="py-5 bg-black">
+<br><br>
+<footer class="py-3 bg-black">
 <div class="container">
 <p class="m-0 text-center text-white small">Copyright &copy; SuggstrGang 2019</p>
 <p class="m-0 text-center text-white small">Powered by Ruby on Rails on Bootstrap</p>

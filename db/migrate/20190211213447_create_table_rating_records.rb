@@ -4,6 +4,8 @@ class CreateTableRatingRecords < ActiveRecord::Migration
       t.integer :user_id
       t.integer :medium_id
       t.string :rated_score
+
+      t.timestamps null: false
     end
   end
 end
