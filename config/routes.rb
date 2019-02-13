@@ -32,8 +32,9 @@ Rails.application.routes.draw do
   get 'user/:user_id/history', to: 'users#history', as: 'user_history'
   # get 'user/:user_id', to: 'users#show', as: 'user_show'
   get 'users/:id/suggestions', to: 'users#suggestions', as: 'user_suggestions'
-
-
+  get 'media/:id/suggest', to: 'suggestions#new', as: 'medium_suggestion'
+  post 'media/:id/suggest', to: 'suggestions#create'
+  post 'queued_media', to: 'queued_media#create'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -5,7 +5,6 @@ class Medium < ActiveRecord::Base
   has_many :users, through: :queued_media
   belongs_to :type
   has_many :suggestions
-
   has_many :rating_records
 
   validates :title, presence: true
@@ -56,5 +55,9 @@ class Medium < ActiveRecord::Base
         rating_history[category] = self.rating_records.select{|rr| rr.rated_score == category}.count.to_f/total
       end
       return rating_history
+    end
+
+    def title_with_type
+      "#{self.title} (#{self.type.name})"
     end
 end
