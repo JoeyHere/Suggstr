@@ -16,7 +16,7 @@
 
   <%= form_for @suggestion do |f| %>
 
-  <%= f.collection_select :receiver_id, User.all, :id, :email %>
+  <%= f.collection_select :receiver_id, User.all, :id, :username %>
   <%= f.collection_select :medium_id, Medium.all, :id, :title %>
   <%= f.text_area :message, placeholder:"Write your message to here." %>
 

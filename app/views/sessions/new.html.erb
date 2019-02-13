@@ -9,18 +9,11 @@
   <% end %>
 
 
-
 <%= form_for(:session, url: login_path) do |f| %>
     <%= f.text_field :email, placeholder: "email address",  class: "input"%><br>
     <%= f.password_field :password, placeholder: "password",  class: "input"%><br>
     <%= f.submit "Log in", class: "btw" %>
 <% end %>
-
-
-
-
-
-
 
 
 <div>
