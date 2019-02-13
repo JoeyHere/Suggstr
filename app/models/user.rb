@@ -6,13 +6,12 @@ class User < ActiveRecord::Base
   has_many :received_suggestions, class_name: "Suggestion", foreign_key: "receiver_id"
 
 
+
   validates :name, presence: true
-  validates :username, presence: {message: "must be added to send and receive suggstns"}
-  # validates :email, presence: true
+  validates :username, uniqueness: { case_sensitive: false }, presence: {message: "must be added to send and receive suggstns"}
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
     message: "must be valid address" }
   validates :email, uniqueness: { case_sensitive: false, message: "can't be added, please try again" }
-  validates :username, uniqueness: { case_sensitive: false}
   has_secure_password
 
 
