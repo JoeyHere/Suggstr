@@ -1,5 +1,10 @@
 <%if logged_in? %>
 <h1>Hi <%= current_user.name %>!</h1>
+
+
+
+
+<%= button_to "Back to dashboard", dashboard_path, method: :get%>
 <% else %>
 
 
@@ -8,16 +13,6 @@
 
   <br>
 
-  <% if flash[:errors] %>
-    <div><font color="red">
-    <ul>
-    <% flash[:errors].each do |error| %>
-    <li><%= error %></li>
-    <% end %>
-    </div></font>
-    </ul>
-    </font></div>
-  <% end %>
 
 
 <%= form_for @user do |f| %>

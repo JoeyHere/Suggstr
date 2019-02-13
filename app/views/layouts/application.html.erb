@@ -63,6 +63,16 @@
 </nav>
 <% end %>
 
+  <% if flash[:errors] %>
+    <div><font color="red">
+    <ul>
+    <% flash[:errors].each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+    </div></font>
+    </ul>
+    </font></div>
+  <% end %>
 
 
 <%= yield %>
