@@ -1,6 +1,9 @@
-<%= @user.name %>
+<% if @user.received_suggestions.length > 0 %>
 <ul>
 <% @user.received_suggestions.each do |sug| %>
 <li><%= link_to sug.medium.title, sug %> (<%= sug.medium.type.name %>) was suggested by <%= sug.sender_object.name %> <%= time_ago_in_words(sug.created_at) %> ago. </li>
 <% end %>
 </ul>
+<% else %>
+<h3>You have no suggstns!</h3>
+<% end %>

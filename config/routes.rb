@@ -12,18 +12,13 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/dashboard', to: 'users#dashboard', as: 'dashboard'
 
-  root 'users#new'
+  root 'sessions#new'
   resources :types
   resources :medium_tags
-  resources :tags
   resources :tags
   resources :queued_media
   resources :users
   resources :media
-  resources :podcasts
-  resources :movies
-  resources :tv_shows
-  resources :video_games
 
   post 'user/:user_id/:medium_id/up', to: 'users#move_up', as: 'move_medium_up'
   post 'user/:user_id/:medium_id/down', to: 'users#move_down', as: 'move_medium_down'
