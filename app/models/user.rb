@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   # validates :email, presence: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
     message: "must be valid address" }
-  validates :email, uniqueness: { case_sensitive: false }
+  validates :email, uniqueness: { case_sensitive: false, message: "can't be added, please try again" }
   has_secure_password
 
 

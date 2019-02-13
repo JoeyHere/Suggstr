@@ -38,11 +38,9 @@ ActiveRecord::Schema.define(version: 20190213085742) do
   end
 
   create_table "rating_records", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "medium_id"
-    t.string   "rated_score"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer "user_id"
+    t.integer "medium_id"
+    t.string  "rated_score"
   end
 
   create_table "suggestions", force: :cascade do |t|
