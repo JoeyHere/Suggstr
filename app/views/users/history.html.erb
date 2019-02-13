@@ -1,1 +1,53 @@
-History to be written
+<div class="container">
+    <% if @completed_media.length > 0 %>
+    <h3>What you have completed so far </h3>
+    <br>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Item</th>
+          <th scope="col">Type</th>
+          <th scope="col">Your rating</th>
+          <th scope="col"> </th>
+          <th scope="col">Time</th>
+          <th scope="col"> </th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <%n = 1%>
+        <% @completed_media.each do |medium| %>
+        <tr>
+          <th scope="row"><%=n%></th>
+          <td><%= medium.title %></td>
+          <td><%= medium.type.name %></td>
+
+          <%@rating_record = RatingRecord.find_by(user_id: @user.id, medium_id: medium.id)%>
+          <td><%=@rating_record.rated_score%></td>
+
+          <%if @rating_record.rated_score == "Good"%>
+              <td>👏🍿</td>
+          <%elsif @rating_record.rated_score == "Average"%>
+              <td> </td>
+          <%else%>
+              <td> </td>
+          <%end%>
+
+          <td><%=time_ago_in_words(@rating_record.updated_at)%> ago</td>
+          <td class="text-center"><a href=users_path class="btn btn-success btn-sm" role="button">Suggest to friend</a></td>
+        </tr>
+        <%n += 1%>
+        <% end %>
+    <% else %>
+        <br><br><br><br>
+        <h1 class="text-center">Oh well.. </h1>
+        <h1 class="text-center">You haven't completed anything yet</h1>
+        <br>
+        <div class="text-center"><a href=<%=media_path%> class="btn btn-primary btn-lg" role="button">Check out our amazing suggstr-base</a></div>
+        <br><br><br><br><br><br><br><br><br><br><br>
+    <% end %>
+  </tbody>
+
+</table>
+</div>

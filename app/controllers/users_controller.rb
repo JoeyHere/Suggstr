@@ -51,6 +51,11 @@ class UsersController < ApplicationController
   end
 
   def history
+    @media = @user.sorted_queued_list
+    @completed_media = @user.completed_queued_list
+  end
+
+  def suggestions
   end
 
   private
