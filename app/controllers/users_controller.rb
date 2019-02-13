@@ -24,20 +24,24 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    @media = @user.sorted_queued_list
-    @completed_media = @user.completed_queued_list
+    if logged_in?
+      @media = @user.sorted_queued_list
+      @completed_media = @user.completed_queued_list
+    else
+      redirect_to login_path
+    end
   end
 
   def move_up
     @medium = Medium.find(params[:medium_id])
     @user.move_medium_up(@medium)
-    redirect_to user_path(@user)
+    redirect_to dashboard_path
   end
 
   def move_down
     @medium = Medium.find(params[:medium_id])
     @user.move_medium_down(@medium)
-    redirect_to user_path(@user)
+    redirect_to dashboard_path
   end
 
   def completed
@@ -47,7 +51,7 @@ class UsersController < ApplicationController
 
   def rated
     RatingRecord.create(user_id: params[:user_id], medium_id: params[:medium_id], rated_score: params[:category])
-    redirect_to user_path(@user)
+    redirect_to dashboard_path
   end
 
   def history

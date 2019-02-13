@@ -10,7 +10,7 @@
 <% else %>
 
 <% if current_user == @user %>
-<%= button_to  "Add to queue", new_medium_path, method: :get , class:'btn btn-primary' %>
+<%= button_to  "Go to your dashboard", dashboard_path, method: :get , class:'btn btn-primary' %>
 <% end %>
 
 <h3><%=@user.name%>'s current queue is:</h3>

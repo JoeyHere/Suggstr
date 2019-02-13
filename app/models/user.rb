@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   has_many :queued_media
   has_many :media, through: :queued_media
   has_many :rating_records
+  has_many :sent_suggestions, class_name: "Suggestion", foreign_key: "sender_id"
+  has_many :received_suggestions, class_name: "Suggestion", foreign_key: "receiver_id"
+
 
   validates :name, presence: true
   # validates :email, presence: true

@@ -4,6 +4,7 @@ class Medium < ActiveRecord::Base
   has_many :queued_media
   has_many :users, through: :queued_media
   belongs_to :type
+  has_many :suggestions
 
   has_many :rating_records
 
