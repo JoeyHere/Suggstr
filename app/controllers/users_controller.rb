@@ -16,11 +16,11 @@ class UsersController < ApplicationController
       @user = User.create(user_params)
       if @user.valid?
         log_in @user
-          redirect_to user_path(@user)
+          redirect_to dashboard_path
       else
           flash[:errors] = @user.errors.full_messages
 
-          redirect_to '/'
+          render new_user_path
       end
   end
 

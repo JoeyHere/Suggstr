@@ -1,6 +1,17 @@
-<%= @user.name %>
+<h2><%= @user.name %>'s Suggestions</h2>
 <ul>
+
+<% if @user.received_suggestions.length == 0  %>
+<li>You have no new suggestions </li>
+
+</ul>
+
+<%= button_to "browse media", media_path, method: :get %> <br>
+
+<% else %>
 <% @user.received_suggestions.each do |sug| %>
 <li><%= link_to sug.medium.title, sug %> (<%= sug.medium.type.name %>) was suggested by <%= sug.sender_object.name %> <%= time_ago_in_words(sug.created_at) %> ago. </li>
 <% end %>
 </ul>
+
+<% end %>
