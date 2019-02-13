@@ -1,4 +1,4 @@
-<h1>Enter you details below to login:</h1>
+<h1 id="login">Enter you details below to login:</h1>
 
   <% if flash[:danger] %>
     <font color="red"><div class="notice">
@@ -11,12 +11,9 @@
 
 
 <%= form_for(:session, url: login_path) do |f| %>
-    <%= f.label :email, "email address :" %>
-    <%= f.text_field :email %><br>
-    <%= f.label :password, "Password:" %>
-    <%= f.password_field :password %><br>
-   
-    <%= f.submit "Log in" %>
+    <%= f.text_field :email, placeholder: "email address",  class: "input"%><br>
+    <%= f.password_field :password, placeholder: "password",  class: "input"%><br>
+    <%= f.submit "Log in", class: "btw" %>
 <% end %>
 
 
@@ -26,7 +23,8 @@
 
 
 
-
+<div>
 <p>New User?
-<%= link_to "Click here to sign up", new_user_path %>
+<%= link_to "Click here to sign up", new_user_path, class: "link" %>
 </p>
+</div>
