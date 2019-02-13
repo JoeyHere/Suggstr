@@ -8,7 +8,6 @@
 
   <br>
 
-
   <% if flash[:errors] %>
     <div><font color="red">
     <ul>
@@ -22,7 +21,8 @@
 
 
 <%= form_for @user do |f| %>
-    <%= f.text_field :name, placeholder: "Name" %><br>
+    <%= f.text_field :name, placeholder: "name" %><br>
+    <%= f.text_field :username, placeholder: "username" %><br>
     <%= f.text_field :email, placeholder: "email address" %><br>
     <%= f.password_field :password, placeholder: "password" %><br>
 
