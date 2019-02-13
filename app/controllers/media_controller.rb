@@ -32,7 +32,7 @@ class MediaController < ApplicationController
       @medium.save
       qmedia = QueuedMedium.find_or_create_by(user_id:current_user.id, medium_id:@medium.id)
       qmedia.update(completed: false, priority_score:0) if qmedia[:completed] == true
-
+      flash[:message] = "#{@medium.title} has been added to your que."
       redirect_to dashboard_path
     end
   end

@@ -39,6 +39,8 @@
 
 <th><%= button_to 'Completed', "/user/#{@user.id}/#{medium.id}/completed", method: 'post', class:'btn btn-success form-inline' %></th>
 
+<th><%= link_to "Suggest", medium_suggestion_path(medium), class: 'btn btn-success' %></th>
+
 <%queued_medium_id = QueuedMedium.find_by(medium_id: medium.id, user_id: @user.id).id%>
 
 <th><%= button_to 'Delete', "/queued_media/#{queued_medium_id}", method: 'delete', class:'btn btn-danger form-inline' %></th>

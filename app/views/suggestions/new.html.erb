@@ -1,7 +1,7 @@
 
 <div>
 
-<h3>Add to que:</h3>
+<h3><%= @medium.title %> (<%= @medium.type.name %>)</h3>
 
 <% if flash[:error] %>
   <div class="notice"><font color="red">
@@ -16,11 +16,17 @@
 
   <%= form_for @suggestion do |f| %>
 
-  <%= f.collection_select :receiver_id, User.all, :id, :username %>
-  <%= f.collection_select :medium_id, Medium.all, :id, :title %>
+  <%= f.text_field :medium_id,:readonly => true, value: @medium.id, type: "hidden" %>
+
+  <%= f.collection_select :receiver_id, User.all, :id, :email %>
+
+  <br>
+
   <%= f.text_area :message, placeholder:"Write your message to here." %>
 
-  <%= button_to "Add", f.submit, class: 'btn btn-success'  %>
+  <br>
+
+  <%= button_to "Send", f.submit, class: 'btn btn-success'  %>
 <% end %>
 
 </div>

@@ -39,3 +39,5 @@
 <% end %>
 
 <p><%= pluralize(@medium.users.length, "user") %> <%= @medium.users.length == 1 ? "has" : "have" %> this in their queue</p>
+
+<%= link_to "Suggest", medium_suggestion_path(@medium), class: 'btn btn-success' %>
