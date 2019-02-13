@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get '/suggstr', to:'wrapper#landing', as: 'landing'
+  get '/goodbye', to:'wrapper#goodbye', as: 'goodbye'
+  get '/learnmore', to:'wrapper#credit', as: 'credit'
+
   get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -22,7 +26,8 @@ Rails.application.routes.draw do
   post 'user/:user_id/:medium_id/down', to: 'users#move_down', as: 'move_medium_down'
   post 'user/:user_id/:medium_id/completed', to: 'users#completed', as: 'medium_completed'
   post 'user/:user_id/:medium_id/rated', to: 'users#rated', as: 'medium_rated'
-  post 'user/:user_id/history', to: 'users#history', as: 'user_history'
+  get 'user/:user_id/history', to: 'users#history', as: 'user_history'
+  get 'user/:user_id/suggestions', to: 'users#suggestions', as: 'user_suggestions'
 
 
 
