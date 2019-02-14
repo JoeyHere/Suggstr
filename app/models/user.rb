@@ -14,7 +14,32 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: { case_sensitive: false, message: "can't be added, please try again" }
   has_secure_password
 
+  #somehow Type.all does not work in the sub function for activerecord, how weird. Now manually writing this
+  @@types = ["Book", "TV Show", "Movie", "Video Game", "Podcast"]
 
+  #select top 5 if top list, otherwise select list of the category
+  def sub_list(category)
+    if category == "Top List"
+      top_x = 5
+      sub_list = []
+      @@types.each do |type|
+        if category_list(type).size >= 5
+          sub_list << category_list(type)[0..top_x-1]
+        else
+          sub_list << category_list(type)
+        end
+      end
+    else
+      sub_category = category.sub("-", " ")[0..category.size-2]
+      sub_list = category_list(sub_category)
+    end
+    return sub_list.flatten
+  end
+
+  def category_list(category)
+    full_list = self.sorted_queued_list
+    return full_list.select{|m| m.type.name == category}
+  end
 
   def sorted_queued_list
     self.reload
@@ -40,7 +65,6 @@ class User < ActiveRecord::Base
       old_queued_medium.update(priority_score: new_queued_medium.priority_score)
       new_queued_medium.update(priority_score: old_priority_score)
     end
-
   end
 
 

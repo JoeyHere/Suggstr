@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/dashboard', to: 'users#dashboard', as: 'dashboard'
+  get '/dashboard/:sub', to: 'users#sub_list', as: 'sub_list'
 
   root 'sessions#new'
   resources :types
@@ -30,6 +31,7 @@ Rails.application.routes.draw do
   get 'media/:id/suggest', to: 'suggestions#new', as: 'medium_suggestion'
   post 'media/:id/suggest', to: 'suggestions#create'
   post 'queued_media', to: 'queued_media#create'
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

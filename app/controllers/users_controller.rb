@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-  before_action :find_current_user, only: [:move_up, :move_down, :completed, :rated, :history, :dashboard, :suggestions]
-   before_action :require_login, only: [:dashboard, :move_up, :move_down, :completed, :rated, :history, :suggestions]
+  before_action :find_current_user, only: [:move_up, :move_down, :completed, :rated, :history, :dashboard, :sub_list, :suggestions]
+   before_action :require_login, only: [:dashboard, :move_up, :move_down, :completed, :rated, :history, :sub_list, :suggestions]
 
   def index
     @users = User.all
@@ -26,8 +26,16 @@ class UsersController < ApplicationController
 
   def dashboard
     if logged_in?
-      @media = @user.sorted_queued_list
-      @completed_media = @user.completed_queued_list
+      @media = @user.sub_list("Top List")
+    else
+      redirect_to login_path
+    end
+  end
+
+  def sub_list
+    if logged_in?
+      @media = @user.sub_list(params[:sub])
+      render 'dashboard'
     else
       redirect_to login_path
     end
@@ -71,6 +79,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @media = @user.sorted_queued_list
   end
+
 
   private
 
