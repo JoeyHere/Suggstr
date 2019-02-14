@@ -4,5 +4,7 @@
 
 
 <%= form_for @queued_medium do |f| %>
-<%= f.button 'Add to que', type: 'submit', name: 'queued_medium[medium_id]', value: @suggestion.medium_id %>
+<%= f.button 'Add to que', type: 'submit', name: 'queued_medium[medium_id]', value: @suggestion.medium_id, class:'btn' %>
 <% end %>
+
+<%= link_to "<i class=\"fas fa-trash-alt\"></i>".html_safe, @suggestion, method: 'delete', class:'btn btn-light btn-sm' %>

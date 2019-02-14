@@ -8,9 +8,9 @@ class SuggestionsController < ApplicationController
   def create
 
     @suggestion = Suggestion.new(suggestion_params)
-
-    if @suggestion.receiver_id != current_user.id
-      @suggestion.update(sender_id: current_user.id)
+    receiver = User.find_by(name: params[:user][:name])
+    if receiver && receiver != current_user
+      @suggestion.update(receiver_id: receiver.id, sender_id: current_user.id)
       @suggestion.save
       flash[:message] = "#{@suggestion.receiver_object.name} has received your suggestion."
       redirect_to dashboard_path
@@ -25,11 +25,18 @@ class SuggestionsController < ApplicationController
     @queued_medium = QueuedMedium.new(user_id: current_user)
   end
 
+  def destroy
+    @suggestion = Suggestion.find(params[:id])
+    @suggestion.destroy
+    flash[:message] = "Suggestion removed."
+    redirect_to user_suggestions_path(current_user)
+  end
+
 
   private
 
   def suggestion_params
-    params.require(:suggestion).permit(:receiver_id, :message, :medium_id)
+    params.require(:suggestion).permit(:message, :medium_id)
   end
 
 end

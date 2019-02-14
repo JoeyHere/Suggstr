@@ -64,32 +64,34 @@
 </nav>
 <% end %>
 
-  <% if flash[:errors] %>
-    <div><font color="red">
-    <ul>
-    <% flash[:errors].each do |error| %>
-    <li><%= error %></li>
-    <% end %>
-    </div></font>
-    </ul>
-    </font></div>
-  <% end %>
 
-  <% if flash[:message] %>
-      <div class="notice"><font color="green">
-        <ul>
-            <li>
-              <%= flash[:message] %>
-            </li>
-        </ul>
-        </font>
-      </div>
-  <% end %>
-
-<% if request.fullpath == '/suggstr' || request.fullpath == '/'  %>
+<% if request.fullpath == '/suggstr' %>
   <%= yield %>
 <% else %>
   <div class="main container">
+
+    <% if flash[:errors] %>
+      <div><font color="red">
+      <ul>
+      <% flash[:errors].each do |error| %>
+      <li><%= error %></li>
+      <% end %>
+        </ul>
+      </font>
+    </div>
+    <% end %>
+
+    <% if flash[:message] %>
+        <div class="notice"><font color="green">
+          <ul>
+              <li>
+                <%= flash[:message] %>
+              </li>
+          </ul>
+          </font>
+        </div>
+
+    <% end %>
   <%= yield %>
   </div>
 <% end %>

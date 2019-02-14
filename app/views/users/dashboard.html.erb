@@ -48,7 +48,7 @@
           <%end%>
           <%queued_medium_id = QueuedMedium.find_by(medium_id: medium.id, user_id: @user.id).id%>
           <th scope="row">Top <%=n%></th>
-          <td><%=medium.title%></td>
+          <td><%=link_to medium.title, medium%></td>
           <td><%=medium.type.name%></td>
           <td>
             <% if !medium.good_score %>
@@ -62,7 +62,7 @@
             <%= button_to 'Completed', "/user/#{@user.id}/#{medium.id}/completed", method: 'post', class:'btn btn-dark btn-sm form-inline' %>
           </td>
           <td class="text-center">
-            <a href=users_path class="btn btn-success btn-sm" role="button"><font color="#FFFFFF">+</font></a>
+            <a href=<%=medium_suggestion_path(medium)%> class="btn btn-success btn-sm" role="button"><font color="#FFFFFF">+</font></a>
           </td>
           <%queued_medium_id = QueuedMedium.find_by(medium_id: medium.id, user_id: @user.id).id%>
           <td class="text-center">
