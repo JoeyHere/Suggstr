@@ -1,5 +1,5 @@
 
-<h2><%= @user.name %>'s Suggestions</h2>
+<h2>Your Suggestions</h2>
 
 <ul>
 
@@ -12,7 +12,7 @@
 
 <% else %>
 <% @user.received_suggestions.each do |sug| %>
-<li><%= link_to sug.medium.title, sug %> (<%= sug.medium.type.name %>) was suggested by <%= sug.sender_object.name %> <%= time_ago_in_words(sug.created_at) %> ago. </li>
+<li><%= link_to "#{sug.medium.title} (#{sug.medium.type.name}) was suggested by #{sug.sender_object.name} #{time_ago_in_words(sug.created_at)} ago.", sug %></li>
 <% end %>
 </ul>
 
