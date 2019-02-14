@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   def create
       @user = User.create(user_params)
+      byebug
       if @user.valid?
         log_in @user
           redirect_to dashboard_path
