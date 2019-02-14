@@ -19,7 +19,5 @@ class SessionsController < ApplicationController
     log_out
     # log_out method in app/helpers/session_helper/rb
     redirect_to root_url
-
   end
-
 end
