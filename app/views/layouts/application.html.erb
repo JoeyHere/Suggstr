@@ -70,6 +70,16 @@
   <%= yield %>
 <% else %>
   <div class="main container">
+      
+      <% if flash[:message] %>
+        <div class="notice"><font color="green">
+          <ul>
+              <li>
+                <%= flash[:message] %>
+              </li>
+          </ul>
+          </font>
+        </div>
 
 
   <%= yield %>
@@ -87,15 +97,7 @@
     </div>
     <% end %>
 
-    <% if flash[:message] %>
-        <div class="notice"><font color="green">
-          <ul>
-              <li>
-                <%= flash[:message] %>
-              </li>
-          </ul>
-          </font>
-        </div>
+
 
     <% end %>
 
