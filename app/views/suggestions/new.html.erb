@@ -1,0 +1,32 @@
+
+<div>
+
+<h3><%= @medium.title %> (<%= @medium.type.name %>)</h3>
+
+<% if flash[:error] %>
+  <div class="notice"><font color="red">
+    <ul>
+        <li>
+          <%= flash[:error] %>
+        </li>
+      <% end %>
+    </ul>
+    </font>
+  </div>
+
+  <%= form_for @suggestion do |f| %>
+
+  <%= f.text_field :medium_id,:readonly => true, value: @medium.id, type: "hidden" %>
+
+  <%= f.collection_select :receiver_id, User.all, :id, :email %>
+
+  <br>
+
+  <%= f.text_area :message, placeholder:"Write your message to here." %>
+
+  <br>
+
+  <%= button_to "Send", f.submit, class: 'btn btn-success'  %>
+<% end %>
+
+</div>

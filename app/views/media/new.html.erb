@@ -4,18 +4,6 @@
 
 <h3>Add to que:</h3>
 
-<% if flash[:errors] %>
-  <div class="notice"><font color="red">
-    <ul>
-      <% flash[:errors].each do |error| %>
-        <li>
-          <%= error %>
-        </li>
-      <% end %>
-    </ul>
-    </font>
-  </div>
-<% end %>
 
 <%= form_for @medium do |f| %>
 

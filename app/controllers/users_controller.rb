@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
-  before_action :find_current_user, only: [:move_up, :move_down, :completed, :rated, :history, :dashboard, :sub_list]
+  before_action :find_current_user, only: [:move_up, :move_down, :completed, :rated, :history, :dashboard, :sub_list, :suggestions]
+   before_action :require_login, only: [:dashboard, :move_up, :move_down, :completed, :rated, :history, :sub_list, :suggestions]
 
   def index
     @users = User.all
@@ -14,10 +15,11 @@ class UsersController < ApplicationController
       @user = User.create(user_params)
       if @user.valid?
         log_in @user
-          redirect_to user_path(@user)
+          redirect_to dashboard_path
       else
           flash[:errors] = @user.errors.full_messages
-          redirect_to '/'
+
+          render new_user_path
       end
   end
 
@@ -61,12 +63,16 @@ class UsersController < ApplicationController
   end
 
   def history
+    authorized_for((params[:user_id]))
     @media = @user.sorted_queued_list
     @completed_media = @user.completed_queued_list
   end
 
   def suggestions
+    authorized_for((params[:id]))
+    @user = User.find(params[:id])
   end
+
 
   def show
     @user = User.find(params[:id])
@@ -80,6 +86,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(
           :email,
           :name,
+          :username,
           :password
       )
   end
@@ -87,5 +94,9 @@ class UsersController < ApplicationController
   def find_current_user
       @user = current_user
   end
+
+    def require_login
+      authorized?
+    end
 
 end

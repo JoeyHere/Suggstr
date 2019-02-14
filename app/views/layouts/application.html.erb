@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 
   <!-- Bootstrap core CSS -->
+
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Keeping the custom fonts -->
@@ -26,7 +27,7 @@
 <div class="container">
 
   <%= link_to "My List", dashboard_path, method:'get', class: 'navbar-brand' %>
-  <%= link_to "Suggested to me", user_suggestions_path(current_user), method:'get', class: 'navbar-brand' %>
+  <%= link_to "My Suggestions(#{current_user.received_suggestions.length})", user_suggestions_path(current_user), method:'get', class: 'navbar-brand' %>
   <%= link_to "History", user_history_path(current_user), method:'get', class: 'navbar-brand' %>
   <%= link_to "Browse", media_path, method:'get', class: 'navbar-brand' %>
   <%= link_to "Top Suggstrrs", users_path, method:'get', class: 'navbar-brand' %>
@@ -34,7 +35,7 @@
   <div class="collapse navbar-collapse" id="navbarResponsive">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <%= link_to "Log Out", logout_path, method:'delete', class: 'nav-link' %>
+        <%= link_to "Log Out, #{current_user.name} ", logout_path, method:'delete', class: 'nav-link' %>
       </li>
     </ul>
   </div>
@@ -63,15 +64,34 @@
 </nav>
 <% end %>
 
+  <% if flash[:errors] %>
+    <div><font color="red">
+    <ul>
+    <% flash[:errors].each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+    </div></font>
+    </ul>
+    </font></div>
+  <% end %>
+
+  <% if flash[:message] %>
+      <div class="notice"><font color="green">
+        <ul>
+            <li>
+              <%= flash[:message] %>
+            </li>
+        </ul>
+        </font>
+      </div>
+  <% end %>
 
 <% if request.fullpath == '/suggstr' || request.fullpath == '/'  %>
-
-<%= yield %>
-
+  <%= yield %>
 <% else %>
-<div class="main container">
-<%= yield %>
-</div>
+  <div class="main container">
+  <%= yield %>
+  </div>
 <% end %>
 
 

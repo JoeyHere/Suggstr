@@ -13,27 +13,24 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'users#dashboard', as: 'dashboard'
   get '/dashboard/:sub', to: 'users#sub_list', as: 'sub_list'
 
-  root 'users#new'
+  root 'sessions#new'
   resources :types
   resources :medium_tags
-  resources :tags
   resources :tags
   resources :queued_media
   resources :users
   resources :media
-  resources :podcasts
-  resources :movies
-  resources :tv_shows
-  resources :video_games
 
   post 'user/:user_id/:medium_id/up', to: 'users#move_up', as: 'move_medium_up'
   post 'user/:user_id/:medium_id/down', to: 'users#move_down', as: 'move_medium_down'
   post 'user/:user_id/:medium_id/completed', to: 'users#completed', as: 'medium_completed'
   post 'user/:user_id/:medium_id/rated', to: 'users#rated', as: 'medium_rated'
   get 'user/:user_id/history', to: 'users#history', as: 'user_history'
-  get 'user/:user_id/suggestions', to: 'users#suggestions', as: 'user_suggestions'
-
-
+  # get 'user/:user_id', to: 'users#show', as: 'user_show'
+  get 'users/:id/suggestions', to: 'users#suggestions', as: 'user_suggestions'
+  get 'media/:id/suggest', to: 'suggestions#new', as: 'medium_suggestion'
+  post 'media/:id/suggest', to: 'suggestions#create'
+  post 'queued_media', to: 'queued_media#create'
 
 
 

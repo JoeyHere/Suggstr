@@ -1,4 +1,16 @@
 <div class="container">
+
+    <% if flash[:error] %>
+      <div class="notice"><font color="red">
+        <ul>
+            <li>
+              <%= flash[:error] %>
+            </li>
+          <% end %>
+        </ul>
+        </font>
+      </div>
+
     <% if @completed_media.length > 0 %>
     <h3>What you have completed so far </h3>
     <br>
@@ -35,7 +47,7 @@
           <%end%>
 
           <td><%=time_ago_in_words(@rating_record.updated_at)%> ago</td>
-          <td class="text-center"><a href=users_path class="btn btn-success btn-sm" role="button">Suggest to friend</a></td>
+          <td class="text-center"><a href=<%=medium_suggestion_path(medium)%> class="btn btn-success btn-sm" role="button">Suggest to friend</a></td>
         </tr>
         <%n += 1%>
         <% end %>
