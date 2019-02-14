@@ -18,11 +18,19 @@
 
   <%= f.text_field :medium_id,:readonly => true, value: @medium.id, type: "hidden" %>
 
-  <%= f.collection_select :receiver_id, User.all, :id, :email %>
+  <%= f.label  "User:" %>
+  <input list="user-names" id="user_names" name="user[name]" class="form-control"
+   style="display: block; visibility: visible; width: 360px; top: 38px; left: 0px;">
+
+  <datalist id="user-names">
+    <% User.all.sort_by{|u| u.name}.each do |u| %>
+        <option value="<%= u.name %>" >
+    <% end %>
+  </datalist>
 
   <br>
 
-  <%= f.text_area :message, placeholder:"Write your message to here." %>
+  <%= f.text_area :message, placeholder:"Write your message here." %>
 
   <br>
 

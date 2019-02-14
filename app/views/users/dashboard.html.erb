@@ -21,6 +21,8 @@
       <div class="text-center"><a href=<%=media_path%> class="btn btn-dark btn-lg" role="button">Check out our amazing suggstr-base</a></div>
       <br><br><br><br><br><br>
     <% else %>
+
+    <%= link_to "Add to que", new_medium_path, class:'btn btn-info btn-lg' %>
     <table class="table">
       <thead>
         <tr>
@@ -48,8 +50,8 @@
             <%medium_tpye = medium.type.name%>
           <%end%>
           <%queued_medium_id = QueuedMedium.find_by(medium_id: medium.id, user_id: @user.id).id%>
-          <th scope="row"><%=n%></th>
-          <td><%=medium.title%></td>
+          <th scope="row">Top <%=n%></th>
+          <td><%=link_to medium.title, medium%></td>
           <td><%=medium.type.name%></td>
           <td>
             <% if !medium.good_score %>

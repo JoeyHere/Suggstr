@@ -6,12 +6,15 @@ Rails.application.routes.draw do
   get '/goodbye', to:'wrapper#goodbye', as: 'goodbye'
   get '/learnmore', to:'wrapper#credit', as: 'credit'
 
+
   get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/dashboard', to: 'users#dashboard', as: 'dashboard'
   get '/dashboard/:sub', to: 'users#sub_list', as: 'sub_list'
+
+
 
   root 'sessions#new'
   resources :types
@@ -32,6 +35,7 @@ Rails.application.routes.draw do
   post 'media/:id/suggest', to: 'suggestions#create'
   post 'queued_media', to: 'queued_media#create'
 
+  
 
 
   # The priority is based upon order of creation: first created -> highest priority.
