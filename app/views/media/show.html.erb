@@ -1,32 +1,37 @@
 <div class="shadow p-3 mb-5 bg-white rounded" style="width:30%; display:inline-block; height:500px; vertical-align:top; margin-right:30px" >
   <h2><%=@medium.title %> - <small>(<%=@medium.type.name %>)</small></h2>
+  <%= link_to("Add to queue", "/queued_media", method: :post, class: 'btn btn-dark') %>
   <%= link_to "Suggest to friend", medium_suggestion_path(@medium), class: 'btn btn-success' %>
 </div>
 
 <div class="shadow p-3 mb-5 bg-white rounded" style="width:60%; display:inline-block; height:500px; vertical-align:top">
-  <% if @medium.tags.count == 0 %>
-    <h3>Tags:  currently there is no tag</h3>
-  <% else %>
-    <h3>Tags:</h3>
-    <% @medium.tags.each do |tag| %>
-      <li>
-        <%= link_to tag.name, tag %>
-      </li>
-    <% end %>
-  <% end %>
+
   <br>
   <% if !!@medium.rating_history["Good"] %>
     <span><%number_to_percentage(@medium.rating_history["Good"]*100/20).to_i.times do%>
       <h3 style="display:inline">⭐️</h3>
     <% end %></span>
+    <font size="1">(out of 5 stars)</font>
     <h3><%= number_to_percentage(@medium.rating_history["Good"]*100, precision: 0) %> of people liked this <%= @medium.type.name %></h3>
+  <% else %>
+    <h3> It's either really bad or no one has reviewd it yet </h3>
   <% end %>
   <p><%= pluralize(@medium.users.length, "user") %> <%= @medium.users.length == 1 ? "has" : "have" %> this in their queue</p>
-  <br>
+  <br><br>
+  <% if @medium.tags.count == 0 %>
+    <h3>Tags:  currently there is no tag</h3>
+  <% else %>
+    <h3>Tags:</h3>
+    <p style="display:inline">
+    <% @medium.tags.each do |tag| %>
+        <p class="btn btn-info"><%= link_to(tag.name,tag, html_options = {:style=>'color:#FFFFFF;'})%></p>
+    <% end %>
+    <p>
+  <% end %>
   <%= form_for @medium do |f| %>
   <div class="selectize">
     <div class="selectize-tags" style="display: block; visibility: visible; width: 360px; top: 38px; left: 0px;">
-      <label for="input-tags">Tags:</label>
+      <label for="input-tags">Add more tags:</label>
       <input type="text" id="input-tags" name="tags" style="width:500px" >
     </div>
     <script>
@@ -42,6 +47,7 @@
       });
     </script>
   </div>
-  <%= button_to "Add", f.submit, class: 'btn btn-dark'  %>
+  <br>
+  <%= button_to "Add tags", f.submit, class: 'btn btn-dark'  %>
   <% end %>
 </div>

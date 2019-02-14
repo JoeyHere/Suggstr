@@ -1,16 +1,18 @@
 <div class="shadow p-3 mb-5 bg-white rounded">
   <nav class="navbar navbar-expand-lg navbar-normal">
-      <%= link_to "Top List", dashboard_path, method:'get', class: 'navbar-brand' %>
+      <%= link_to "Top List  |", dashboard_path, method:'get', class: 'navbar-brand' %>
       <%= link_to "Movies", '/dashboard/Movies', method:'get', class: 'navbar-brand' %>
       <%= link_to "TV Shows",'/dashboard/TV-Shows', method:'get', class: 'navbar-brand' %>
       <%= link_to "Books", '/dashboard/Books', method:'get', class: 'navbar-brand' %>
       <%= link_to "Video Games", '/dashboard/Video-Games', method:'get', class: 'navbar-brand' %>
-      <%= link_to "Podcasts", '/dashboard/Podcasts', method:'get', class: 'navbar-brand' %>
+      <%= link_to "Podcasts  |", '/dashboard/Podcasts', method:'get', class: 'navbar-brand' %>
+      <%= link_to "Add new+", new_medium_path, method:'get', class: 'navbar-brand' %>
 
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search by tag" aria-label="Search">
         <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
       </form>
+
   </nav>
   <div class="small container">
     <% if @media == nil || @media == [] %>
@@ -22,12 +24,11 @@
       <br><br><br><br><br><br>
     <% else %>
 
-    <%= link_to "Add to que", new_medium_path, class:'btn btn-info btn-lg' %>
+
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Item</th>
+          <th scope="col">Media</th>
           <th scope="col">Type</th>
           <th scope="col">Avg Rating</th>
           <th scope="col">Added</th>
@@ -39,19 +40,11 @@
         </tr>
       </thead>
       <tbody>
-        <%n = 0%>
         <%medium_tpye = @media.first.type.name%>
         <% @media.each do |medium| %>
         <tr>
-          <%if medium.type.name == medium_tpye%>
-            <%n+=1%>
-          <%else%>
-            <%n=1%>
-            <%medium_tpye = medium.type.name%>
-          <%end%>
           <%queued_medium_id = QueuedMedium.find_by(medium_id: medium.id, user_id: @user.id).id%>
-          <th scope="row">Top <%=n%></th>
-          <td><%=link_to medium.title, medium%></td>
+          <td><%=link_to(medium.title, medium,html_options = {:style=>'color:#000000;'})%></td>
           <td><%=medium.type.name%></td>
           <td>
             <% if !medium.good_score %>
