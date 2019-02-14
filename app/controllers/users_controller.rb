@@ -26,8 +26,13 @@ class UsersController < ApplicationController
 
   def dashboard
     if logged_in?
-      @media = @user.sub_list("Top List")
-      @sub = "Top List"
+      if params[:q] && params[:q] != ""
+        @searched = Tag.find_by(name: params[:q])
+        @media = current_user.media.select{|m| m.tags.include?(@searched)}
+      else
+        @media = @user.sub_list("Top List")
+        @sub = "Top List"
+      end
     else
       redirect_to login_path
     end
