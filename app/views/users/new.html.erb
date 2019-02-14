@@ -22,7 +22,6 @@
 <%= form_for @user do |f| %>
     <%= f.text_field :name, placeholder: "name", class: "input-form" %><br>
     <%= f.text_field :username, placeholder: "username", class: "input-form"  %><br>
-    <%= f.text_field :email, placeholder: "email address", class: "input-form"  %><br>
     <%= f.password_field :password, placeholder: "password", class: "input-form"  %><br>
 
     <%= f.submit "Sign up", class: "btn btn-primary btn-m rounded-pill mt-2"  %>

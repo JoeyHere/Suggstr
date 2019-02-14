@@ -4,8 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    byebug
-    user = User.find_by(email: params[:session][:email])
+    user = User.find_by(username: params[:session][:username])
      if user && user.authenticate(params[:session][:password])
       # log_in method in app/helpers/session_helper/rb
       log_in user
