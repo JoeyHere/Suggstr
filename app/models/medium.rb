@@ -53,8 +53,16 @@ class Medium < ActiveRecord::Base
       #number of people rated
       total = self.rating_records.size
       RatingRecord.categories.each do |category|
-        rating_history[category] = self.rating_records.select{|rr| rr.rated_score == category}.count.to_f/total
+        if total == 0
+          rating_history[category] = nil
+        else
+          rating_history[category] = self.rating_records.select{|rr| rr.rated_score == category}.count.to_f/total
+        end 
       end
       return rating_history
+    end
+
+    def good_score
+      self.rating_history[RatingRecord.categories.first]
     end
 end

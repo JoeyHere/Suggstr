@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/dashboard', to: 'users#dashboard', as: 'dashboard'
+  get '/dashboard/:sub', to: 'users#sub_list', as: 'sub_list'
 
   root 'users#new'
   resources :types
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
   post 'user/:user_id/:medium_id/rated', to: 'users#rated', as: 'medium_rated'
   get 'user/:user_id/history', to: 'users#history', as: 'user_history'
   get 'user/:user_id/suggestions', to: 'users#suggestions', as: 'user_suggestions'
+
 
 
 
