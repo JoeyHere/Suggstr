@@ -82,18 +82,18 @@
           </font>
         </div>
       <% end %>
+    <% if flash[:errors] %>
+      <div><font color="red">
+      <ul>
+        <% flash[:errors].each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+      </font>
+    </div>
+    <% end %>
   <%= yield %>
   </div>
-  <% if flash[:errors] %>
-    <div><font color="red">
-    <ul>
-    <% flash[:errors].each do |error| %>
-    <li><%= error %></li>
-    <% end %>
-      </ul>
-    </font>
-  </div>
-  <% end %>
 <% end %>
 
 

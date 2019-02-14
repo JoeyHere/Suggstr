@@ -21,7 +21,7 @@
   }
 
   body{font-family:Lato;}
-  .container{width:90%;margin-left:auto;margin-right:auto}
+  .container{width:100%;margin-left:auto;margin-right:auto}
   .main.container {margin-top: 120px}
   .small.container {margin-top: 30px; width:95%}
   h1,h2,h3,h4,h5,h6{font-family:Catamaran;font-weight:800!important}
@@ -54,7 +54,7 @@
   .btn-secondary{background-color:#ff6a00;border-color:#ff6a00}
   .btn-secondary:active,.btn-secondary:focus,.btn-secondary:hover{background-color:#c50!important;border-color:#c50!important}
   .btn-secondary:focus{-webkit-box-shadow:0 0 0 .2rem rgba(255,106,0,.5);box-shadow:0 0 0 .2rem rgba(255,106,0,.5)}
-  .input-form{margin: 5px;  border-radius: 25px;
+  .input-form{margin: 5px;  border-radius: 25px; padding-left: 10px;
   border: 2px solid (#ee0979); margin-left: auto; margin-right: auto;}
   ::placeholder {font-family:Lato;
   color: silver;
