@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   post 'media/:id/suggest', to: 'suggestions#create'
   post 'queued_media', to: 'queued_media#create'
 
+  
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
