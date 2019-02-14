@@ -67,5 +67,5 @@ class Medium < ActiveRecord::Base
 
     def title_with_type
       "#{self.title} (#{self.type.name})"
-    end 
+    end
 end

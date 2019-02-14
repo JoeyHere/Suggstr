@@ -93,6 +93,9 @@ class User < ActiveRecord::Base
     return completed_queued_list
   end
 
+  def sort_by_time(unsorted_list)
+    unsorted_list.sort_by
+  end
 
 
 end
