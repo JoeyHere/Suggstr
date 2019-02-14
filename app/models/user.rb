@@ -52,7 +52,8 @@ class User < ActiveRecord::Base
   end
 
   def move_medium_up(medium_up)
-    queued_list = self.sorted_queued_list
+    category = "#{medium_up.type.name.sub(" ", "-")}s"
+    queued_list = self.sub_list(category)
     current_spot = queued_list.index(medium_up)
 
     #ensure the top of the list cannot be moved even further
@@ -69,7 +70,8 @@ class User < ActiveRecord::Base
 
 
   def move_medium_down(medium_down)
-    queued_list = self.sorted_queued_list
+    category = "#{medium_down.type.name.sub(" ", "-")}s"
+    queued_list = self.sub_list(category)
     current_spot = queued_list.index(medium_down)
     if current_spot != queued_list.size-1
       medium_up = queued_list[current_spot+1]

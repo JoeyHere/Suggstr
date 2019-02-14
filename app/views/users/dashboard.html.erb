@@ -33,6 +33,7 @@
           <th scope="col"> </th>
           <th scope="col"> </th>
           <th scope="col"> </th>
+          <th scope="col"> </th>
         </tr>
       </thead>
       <tbody>
@@ -47,7 +48,7 @@
             <%medium_tpye = medium.type.name%>
           <%end%>
           <%queued_medium_id = QueuedMedium.find_by(medium_id: medium.id, user_id: @user.id).id%>
-          <th scope="row">Top <%=n%></th>
+          <th scope="row"><%=n%></th>
           <td><%=medium.title%></td>
           <td><%=medium.type.name%></td>
           <td>
@@ -58,11 +59,19 @@
             <% end %>
           </td>
           <td><%=time_ago_in_words(medium.created_at)%> ago</td>
+          <% if @sub != "Top List" && @sub != nil%>
+            <td class="text-center">
+              <%= link_to "<i class=\"fas fa-arrow-up\"></i>".html_safe, "/user/#{@user.id}/#{medium.id}/up", method: 'post', class:'btn btn-light btn-sm' %>
+            </td>
+            <td class="text-center">
+              <%= link_to "<i class=\"fas fa-arrow-down\"></i>".html_safe, "/user/#{@user.id}/#{medium.id}/down", method: 'post', class:'btn btn-light btn-sm' %>
+            </td>
+          <% end %>
           <td class="text-center">
             <%= button_to 'Completed', "/user/#{@user.id}/#{medium.id}/completed", method: 'post', class:'btn btn-dark btn-sm form-inline' %>
           </td>
           <td class="text-center">
-            <a href=users_path class="btn btn-success btn-sm" role="button"><font color="#FFFFFF">+</font></a>
+            <%= button_to '+', "/media/#{medium.id}/suggest", method: 'get', class:'btn btn-success btn-sm form-inline' %>
           </td>
           <%queued_medium_id = QueuedMedium.find_by(medium_id: medium.id, user_id: @user.id).id%>
           <td class="text-center">

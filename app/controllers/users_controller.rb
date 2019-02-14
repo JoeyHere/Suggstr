@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   def dashboard
     if logged_in?
       @media = @user.sub_list("Top List")
+      @sub = "Top List"
     else
       redirect_to login_path
     end
@@ -34,6 +35,7 @@ class UsersController < ApplicationController
   def sub_list
     if logged_in?
       @media = @user.sub_list(params[:sub])
+      @sub = params[:sub]
       render 'dashboard'
     else
       redirect_to login_path
@@ -42,14 +44,18 @@ class UsersController < ApplicationController
 
   def move_up
     @medium = Medium.find(params[:medium_id])
+    category = @medium.type.name
     @user.move_medium_up(@medium)
-    redirect_to dashboard_path
+    url = "/dashboard/#{category.sub(" ", "-")}s"
+    redirect_to url
   end
 
   def move_down
     @medium = Medium.find(params[:medium_id])
+    category = @medium.type.name
     @user.move_medium_down(@medium)
-    redirect_to dashboard_path
+    url = "/dashboard/#{category.sub(" ", "-")}s"
+    redirect_to url
   end
 
   def completed
