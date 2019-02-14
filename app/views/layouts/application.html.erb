@@ -71,6 +71,11 @@
 <% else %>
   <div class="main container">
 
+
+  <%= yield %>
+  </div>
+<% end %>
+
     <% if flash[:errors] %>
       <div><font color="red">
       <ul>
@@ -93,10 +98,6 @@
         </div>
 
     <% end %>
-  <%= yield %>
-  </div>
-<% end %>
-
 
 
 <!-- Footer -->
