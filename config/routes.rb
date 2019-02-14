@@ -6,11 +6,15 @@ Rails.application.routes.draw do
   get '/goodbye', to:'wrapper#goodbye', as: 'goodbye'
   get '/learnmore', to:'wrapper#credit', as: 'credit'
 
+
   get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/dashboard', to: 'users#dashboard', as: 'dashboard'
+  get '/dashboard/:sub', to: 'users#sub_list', as: 'sub_list'
+
+
 
   root 'sessions#new'
   resources :types
