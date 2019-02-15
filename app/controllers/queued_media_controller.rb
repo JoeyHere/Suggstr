@@ -4,7 +4,6 @@ class QueuedMediaController < ApplicationController
   before_action :find_user, only: [:destroy]
 
   def create
-    byebug
     if !QueuedMedium.find_by(user_id: current_user.id, medium_id: params[:queued_medium][:medium_id])
       @queued_medium = QueuedMedium.new(user_id: current_user.id)
       @queued_medium.update(queued_medium_params)

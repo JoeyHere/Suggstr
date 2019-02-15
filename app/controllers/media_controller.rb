@@ -7,6 +7,7 @@ class MediaController < ApplicationController
   end
 
   def show
+    @queued_medium = QueuedMedium.new(user_id: current_user.id)
   end
 
   def new
