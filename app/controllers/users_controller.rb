@@ -18,7 +18,9 @@ class UsersController < ApplicationController
         log_in @user
           redirect_to dashboard_path
       else
+
           flash[:danger] = @user.errors.full_messages
+
 
           redirect_to new_user_path
       end
