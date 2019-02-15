@@ -66,7 +66,6 @@ class UsersController < ApplicationController
   end
 
   def rated
-    byebug
     RatingRecord.create(user_id: params[:user_id], medium_id: params[:medium_id], rated_score: params[:category])
     redirect_to dashboard_path
   end
@@ -75,7 +74,7 @@ class UsersController < ApplicationController
     authorized_for((params[:user_id]))
     @media = @user.sorted_queued_list
     @completed_media = @user.completed_queued_list
-    byebug
+
   end
 
   def suggestions
