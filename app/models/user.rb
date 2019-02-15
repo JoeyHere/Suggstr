@@ -20,20 +20,26 @@ class User < ActiveRecord::Base
   #select top 5 if top list, otherwise select list of the category
   def sub_list(category)
     if category == "Top List"
-      top_x = 5
-      sub_list = []
-      @@types.each do |type|
-        if category_list(type).size >= top_x
-          sub_list << category_list(type)[0..top_x-1]
-        else
-          sub_list << category_list(type)
-        end
-      end
+      sub_list = self.top_list.sort_by {|m| QueuedMedium.find_by(medium_id: m.id, user_id: self.id).updated_at}
     else
       sub_category = category.sub("-", " ")[0..category.size-2]
       sub_list = category_list(sub_category)
     end
     return sub_list.flatten
+  end
+
+  def top_list
+    top_x = 5
+    top_list = []
+    @@types.each do |type|
+      if category_list(type).size >= top_x
+        top_list << category_list(type)[0..top_x-1]
+      else
+        top_list << category_list(type)
+      end
+    end
+    byebug
+    return top_list.flatten
   end
 
   def category_list(category)

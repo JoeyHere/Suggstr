@@ -1,20 +1,24 @@
 <div class="shadow p-3 mb-5 bg-white rounded" style="width:30%; display:inline-block; height:500px; vertical-align:top; margin-right:30px" >
   <h2><%=@medium.title %> - <small>(<%=@medium.type.name %>)</small></h2>
-  <%= form_for @queued_medium do |f| %>
-  <%= f.button 'Add to que', type: 'submit', name: 'queued_medium[medium_id]', value: @medium.id, class:'btn' %>
-  <% end %>
-  <%= link_to "Suggest to friend", medium_suggestion_path(@medium), class: 'btn btn-success' %>
+  <div class="row" style="margin-left:2px">
+    <div class="row" style="margin-left:2px;margin-right:10px">
+    <%= form_for @queued_medium do |f| %>
+    <%= f.button 'Add to que', type: 'submit', name: 'queued_medium[medium_id]', value: @medium.id, class:'btn btn-dark' %>
+    <% end %>
+    </div>
+    <%= link_to "Suggest to friend", medium_suggestion_path(@medium), class: 'btn btn-success' %>
+  </div>
 </div>
 
 <div class="shadow p-3 mb-5 bg-white rounded" style="width:60%; display:inline-block; height:500px; vertical-align:top">
 
   <br>
   <% if !!@medium.rating_history["Good"] %>
-    <span><%number_to_percentage(@medium.rating_history["Good"]*100/20).to_i.times do%>
+    <span><%number_to_percentage(@medium.avg_score*100/20).to_i.times do%>
       <h3 style="display:inline">⭐️</h3>
     <% end %></span>
     <font size="1">(out of 5 stars)</font>
-    <h3><%= number_to_percentage(@medium.rating_history["Good"]*100, precision: 0) %> of people liked this <%= @medium.type.name %></h3>
+    <h3><%= number_to_percentage(@medium.rating_history["Good"]*100, precision: 0) %> of people really liked this <%= @medium.type.name %></h3>
   <% else %>
     <h3> It's either really bad or no one has reviewd it yet </h3>
   <% end %>
