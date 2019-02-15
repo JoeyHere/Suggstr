@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   #select top 5 if top list, otherwise select list of the category
   def sub_list(category)
     if category == "Top List"
-      sub_list = self.top_list.sort_by {|m| QueuedMedium.find_by(medium_id: m.id, user_id: self.id).updated_at}
+      sub_list = self.top_list.sort_by {|m| QueuedMedium.find_by(medium_id: m.id, user_id: self.id).updated_at}.reverse
     else
       sub_category = category.sub("-", " ")[0..category.size-2]
       sub_list = category_list(sub_category)
@@ -38,7 +38,6 @@ class User < ActiveRecord::Base
         top_list << category_list(type)
       end
     end
-    byebug
     return top_list.flatten
   end
 

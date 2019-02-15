@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   def dashboard
     if logged_in?
       if params[:q] && params[:q] != ""
-        @searched = Tag.find_by(name: params[:q])
+        @searched = Tag.find_by(name: params[:q].downcase)
         @media = current_user.media.select{|m| m.tags.include?(@searched)}
       else
         @media = @user.sub_list("Top List")
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
 
   def rated
     RatingRecord.create(user_id: params[:user_id], medium_id: params[:medium_id], rated_score: params[:category])
-    redirect_to dashboard_path
+    redirect_to user_history_path
   end
 
   def history
