@@ -74,7 +74,7 @@
   <div class="main container">
       <% if flash[:message] %>
         <div class="notice"><font color="green">
-          <ul>
+          <ul></ul>
               <li>
                 <%= flash[:message] %>
               </li>
@@ -82,16 +82,6 @@
           </font>
         </div>
       <% end %>
-    <% if flash[:errors] %>
-      <div><font color="red">
-      <ul>
-        <% flash[:errors].each do |error| %>
-          <li><%= error %></li>
-        <% end %>
-      </ul>
-      </font>
-    </div>
-    <% end %>
   <%= yield %>
   </div>
 <% end %>
