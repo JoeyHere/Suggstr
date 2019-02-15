@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
 
   validates :name, presence: true
-  validates :username, uniqueness: { case_sensitive: false }, presence: {message: "must be added to send and receive suggstns"}
+  validates :username, uniqueness: { case_sensitive: false }, presence: {message: "must be added"}
   # validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
   #   message: "must be valid address" }
   # validates :email, uniqueness: { case_sensitive: false, message: "can't be added, please try again" }
