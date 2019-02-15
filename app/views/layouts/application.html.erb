@@ -33,7 +33,6 @@
   <%= link_to "My Suggestions(#{current_user.received_suggestions.length})", user_suggestions_path(current_user), method:'get', class: 'navbar-brand' %>
   <%= link_to "History", user_history_path(current_user), method:'get', class: 'navbar-brand' %>
   <%= link_to "Browse", media_path, method:'get', class: 'navbar-brand' %>
-  <%= link_to "Top Suggstrrs", users_path, method:'get', class: 'navbar-brand' %>
 
   <div class="collapse navbar-collapse" id="navbarResponsive">
     <ul class="navbar-nav ml-auto">
@@ -49,7 +48,7 @@
 <!-- Navigation for none logged in userss-->
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
 <div class="container">
-  <a class="navbar-brand" href="#">Explore Suggstr</a>
+  <a class="navbar-brand" href="/">Explore Suggstr</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -68,14 +67,14 @@
 <% end %>
 
 
-<% if request.fullpath == '/suggstr' %>
+<% if request.fullpath == '/suggstr' || request.fullpath.include?("completed") %>
   <%= yield %>
 <% else %>
   <div class="main container">
       <% if flash[:message] %>
         <div class="notice"><font color="green">
-          <ul>
-              <li>
+          <ul></ul>
+              <li></li>
                 <%= flash[:message] %>
               </li>
           </ul>
@@ -93,6 +92,7 @@
     </div>
     <% end %>
   <%= yield %>
+  <br><br>
   </div>
 <% end %>
 
@@ -100,7 +100,6 @@
 
 
 <!-- Footer -->
-<br><br>
 <footer class="py-3 bg-black">
 <div class="container">
 <p class="m-0 text-center text-white small">Copyright &copy; SuggstrGang 2019</p>

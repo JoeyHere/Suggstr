@@ -42,17 +42,20 @@
         <%medium_tpye = @media.first.type.name%>
         <% @media.each do |medium| %>
         <tr>
-          <%queued_medium_id = QueuedMedium.find_by(medium_id: medium.id, user_id: @user.id).id%>
+          <%queued_medium = QueuedMedium.find_by(medium_id: medium.id, user_id: @user.id)%>
+          <%queued_medium_id = queued_medium.id%>
           <td><%=link_to(medium.title, medium,html_options = {:style=>'color:#000000;'})%></td>
           <td><%=medium.type.name%></td>
           <td>
             <% if !medium.good_score %>
               <%="-"%>
             <% else %>
-              <%=medium.good_score*100%>
+              <%(medium.good_score*100/20).to_i.times do%>
+                <p style="display:inline">★</p>
+              <%end%>
             <% end %>
           </td>
-          <td><%=time_ago_in_words(medium.created_at)%> ago</td>
+          <td><%=time_ago_in_words(queued_medium.updated_at)%> ago</td>
           <% if @sub != "Top List" && @sub != nil%>
             <td class="text-center">
               <%= link_to "<i class=\"fas fa-arrow-up\"></i>".html_safe, "/user/#{@user.id}/#{medium.id}/up", method: 'post', class:'btn btn-light btn-sm' %>

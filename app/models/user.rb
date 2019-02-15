@@ -9,9 +9,9 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
   validates :username, uniqueness: { case_sensitive: false }, presence: {message: "must be added to send and receive suggstns"}
-  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
-    message: "must be valid address" }
-  validates :email, uniqueness: { case_sensitive: false, message: "can't be added, please try again" }
+  # validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
+  #   message: "must be valid address" }
+  # validates :email, uniqueness: { case_sensitive: false, message: "can't be added, please try again" }
   has_secure_password
 
   #somehow Type.all does not work in the sub function for activerecord, how weird. Now manually writing this
@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
       top_x = 5
       sub_list = []
       @@types.each do |type|
-        if category_list(type).size >= 5
+        if category_list(type).size >= top_x
           sub_list << category_list(type)[0..top_x-1]
         else
           sub_list << category_list(type)
@@ -94,8 +94,7 @@ class User < ActiveRecord::Base
   end
 
   def sort_by_time(unsorted_list)
-    unsorted_list.sort_by
+    return unsorted_list.sort_by{|m| m.updated_at}
   end
-
 
 end
