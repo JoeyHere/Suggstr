@@ -6,7 +6,7 @@
 <%= form_tag "/user/#{@queued_medium.user_id}/#{@queued_medium.medium_id}/rated", method:'post' do %>
 	<% RatingRecord.categories.each do |category| %>
 			<label class="btn btn-dark">
-				<input type="radio" name="category" autocomplete="off"><%="     #{category}"%>
+				<input type="radio" name="category" autocomplete="off" value="<%= category %>"><%="     #{category}"%>
   		</label>
 	<% end %>
 	<br><br><br>
