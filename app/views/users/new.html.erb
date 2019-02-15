@@ -9,7 +9,7 @@
 
   <br>
 
-<div style= "max-width: 450px; max-height: 400px;margin: auto;" class="shadow p-3 mb-5 bg-white rounded">
+<div style= "max-width: 450px; max-height: 500px;margin: auto;" class="shadow p-3 mb-5 bg-white rounded">
   <nav style="display: flex; flex-direction: column;" class="navbar navbar-expand-lg navbar-normal">
       <h3 class="form-header">Sign up to Suggstr</h3>
         <h5 class="form-header">And start suggstng!</h5>
@@ -28,7 +28,7 @@
 
 <% end %>
 
-  <% if flash.now[:danger] %>
+ <% if flash.now[:danger] %>
       <div><font color="red">
       <ul>
         <% flash.now[:danger].each do |error| %>

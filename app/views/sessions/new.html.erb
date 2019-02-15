@@ -22,10 +22,10 @@
 </p>
 </div>
 
- <% if flash[:danger] %>
+ <% if flash.now[:danger] %>
       <div><font color="red">
       <ul>
-        <% flash[:danger].each do |error| %>
+        <% flash.now[:danger].each do |error| %>
           <li><%= error %></li>
         <% end %>
       </ul>

@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       redirect_to dashboard_path
      else
 
-      flash[:danger] = ["Login information not found. Please try again or sign up"]
+      flash.now[:danger] = ["Login information not found. Please try again or sign up"]
 
       render 'new'
     end
