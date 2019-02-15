@@ -54,6 +54,7 @@
   .btn-secondary{background-color:#ff6a00;border-color:#ff6a00}
   .btn-secondary:active,.btn-secondary:focus,.btn-secondary:hover{background-color:#c50!important;border-color:#c50!important}
   .btn-secondary:focus{-webkit-box-shadow:0 0 0 .2rem rgba(255,106,0,.5);box-shadow:0 0 0 .2rem rgba(255,106,0,.5)}
+  
   .input-form{margin: 5px;  border-radius: 25px; padding-left: 10px;
   border: 2px solid (#ee0979); margin-left: auto; margin-right: auto;}
   ::placeholder {font-family:Lato;
@@ -63,7 +64,5 @@
   padding-left: 10px;}
 
 .form-header{
-    display: flex;
-    flex-direction: column;
     color: white;
 }

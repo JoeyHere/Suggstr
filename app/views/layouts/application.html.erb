@@ -67,14 +67,14 @@
 <% end %>
 
 
-<% if request.fullpath == '/suggstr' || request.fullpath.include?("completed") %>
+<% if request.fullpath == '/' || request.fullpath.include?("completed") %>
   <%= yield %>
 <% else %>
   <div class="main container">
       <% if flash[:message] %>
         <div class="notice"><font color="green">
-          <ul></ul>
-              <li></li>
+          <ul>
+              <li>
                 <%= flash[:message] %>
               </li>
           </ul>

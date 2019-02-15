@@ -2,13 +2,13 @@
 
 
 
-<div style= "max-width: 450px; margin: auto" class="shadow p-3 mb-5 bg-white rounded">
-  <nav class="navbar navbar-expand-lg navbar-normal">
-        <h3 class="form-header">Enter you details below to login:</h3>
+<div style= "max-width: 450px; max-height: 450px;  margin: auto;" class="shadow p-3 mb-5 bg-white rounded">
+  <nav style="display: flex; flex-direction: column;" class="navbar navbar-expand-lg navbar-normal">
+        <h3 class="form-header">Enter login details:</h3>
 
   </nav>
 
-<%= form_for(:session, url:'/login', method: :post) do |f| %>
+<%= form_for(:session, url:'/login', html: {class: "text-center", style: "margin-top: 1rem;" }, method: :post) do |f| %>
     <%= f.text_field :username, placeholder: "username",  class: "input-form"%><br>
     <%= f.password_field :password, placeholder: "password",  class: "input-form"%><br>
     <%= f.submit "Log in", class: "btn btn-primary btn-m rounded-pill mt-2"%>
@@ -17,15 +17,15 @@
 
 
 <div>
-<p>New User?
+<p class = "text-center" style = "margin-top: 2rem; 1">New User? <br>
 <%= link_to "Click here to sign up", new_user_path, class: "link" %>
 </p>
 </div>
 
- <% if flash[:errors] %>
+ <% if flash[:danger] %>
       <div><font color="red">
       <ul>
-        <% flash[:errors].each do |error| %>
+        <% flash[:danger].each do |error| %>
           <li><%= error %></li>
         <% end %>
       </ul>
