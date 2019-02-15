@@ -1,6 +1,8 @@
 <div class="shadow p-3 mb-5 bg-white rounded" style="width:30%; display:inline-block; height:500px; vertical-align:top; margin-right:30px" >
   <h2><%=@medium.title %> - <small>(<%=@medium.type.name %>)</small></h2>
-  <%= link_to("Add to queue", "/queued_media", method: :post, class: 'btn btn-dark') %>
+  <%= form_for @queued_medium do |f| %>
+  <%= f.button 'Add to que', type: 'submit', name: 'queued_medium[medium_id]', value: @medium.id, class:'btn' %>
+  <% end %>
   <%= link_to "Suggest to friend", medium_suggestion_path(@medium), class: 'btn btn-success' %>
 </div>
 
