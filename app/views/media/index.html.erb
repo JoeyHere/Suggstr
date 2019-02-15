@@ -1,11 +1,31 @@
-
-<h3>Media</h3>
-
-<ul>
-  <% @media.each do |medium| %>
-        <li>
-          <%=link_to medium.title, medium %>  - <small>(<%= link_to medium.type.name, medium.type %>)</small>
-        </li>
-      <br>
+<h3>Trending now</h3>
+<%Medium.most_popular(10)[0..9].each do |m|%>
+<div class="shadow p-3 mb-5 bg-white rounded" style="width:17%; display:inline-block; height:150px; vertical-align:top; margin-right:30px" >
+  <% if m.title.size >= 25 %>
+  <h5><%=link_to(m.title[0..24], m, html_options = {:style=>'color:#000000;'})%>..</h5>
+  <% else %>
+  <h5><%=link_to(m.title, m, html_options = {:style=>'color:#000000;'})%></h5>
   <% end %>
-</ul>
+  <span><%number_to_percentage(m.avg_score*100/20).to_i.times do%>
+    <h3 style="display:inline">⭐️</h3>
+  <% end %></span>
+  <p><font size="1">(out of 5 stars)</font></p>
+</div>
+<%end%>
+<br>
+<hr>
+<br>
+<h3>Highest rated</h3>
+<%Medium.top_rated(10)[0..9].each do |m|%>
+<div class="shadow p-3 mb-5 bg-white rounded" style="width:17%; display:inline-block; height:150px; vertical-align:top; margin-right:30px" >
+  <% if m.title.size >= 25 %>
+  <h5><%=link_to(m.title[0..24], m, html_options = {:style=>'color:#000000;'})%>..</h5>
+  <% else %>
+  <h5><%=link_to(m.title, m, html_options = {:style=>'color:#000000;'})%></h5>
+  <% end %>
+  <span><%number_to_percentage(m.avg_score*100/20).to_i.times do%>
+    <h3 style="display:inline">⭐️</h3>
+  <% end %></span>
+  <p><font size="1">(out of 5 stars)</font></p>
+</div>
+<%end%>

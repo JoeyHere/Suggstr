@@ -72,4 +72,13 @@ class Medium < ActiveRecord::Base
     def title_with_type
       "#{self.title} (#{self.type.name})"
     end
+
+    def self.top_rated(x)
+      Medium.all.sort_by{|m| m.avg_score}.reverse[0..x-1]
+    end
+
+    def self.most_popular(x)
+      Medium.all.sort_by{|m| m.queued_media.count}.reverse[0..x-1]
+    end
+
 end
