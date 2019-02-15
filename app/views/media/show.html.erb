@@ -1,7 +1,7 @@
 <div class="shadow p-3 mb-5 bg-white rounded" style="width:30%; display:inline-block; height:500px; vertical-align:top; margin-right:30px" >
   <h2><%=@medium.title %> - <small>(<%=@medium.type.name %>)</small></h2>
   <%= form_for @queued_medium do |f| %>
-  <%= f.button 'Add to que', type: 'submit', name: 'queued_medium[medium_id]', value: @medium.id, class:'btn' %>
+  <%= f.button 'Add to queue', type: 'submit', name: 'queued_medium[medium_id]', value: @medium.id, class:'btn' %>
   <% end %>
   <%= link_to "Suggest to friend", medium_suggestion_path(@medium), class: 'btn btn-success' %>
 </div>
@@ -16,7 +16,7 @@
     <font size="1">(out of 5 stars)</font>
     <h3><%= number_to_percentage(@medium.rating_history["Good"]*100, precision: 0) %> of people liked this <%= @medium.type.name %></h3>
   <% else %>
-    <h3> It's either really bad or no one has reviewd it yet </h3>
+    <h3> It's either really bad or no one has reviewed it yet </h3>
   <% end %>
   <p><%= pluralize(@medium.users.length, "user") %> <%= @medium.users.length == 1 ? "has" : "have" %> this in their queue</p>
   <br><br>
