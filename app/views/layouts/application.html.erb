@@ -33,7 +33,6 @@
   <%= link_to "My Suggestions(#{current_user.received_suggestions.length})", user_suggestions_path(current_user), method:'get', class: 'navbar-brand' %>
   <%= link_to "History", user_history_path(current_user), method:'get', class: 'navbar-brand' %>
   <%= link_to "Browse", media_path, method:'get', class: 'navbar-brand' %>
-  <%= link_to "Top Suggstrrs", users_path, method:'get', class: 'navbar-brand' %>
 
   <div class="collapse navbar-collapse" id="navbarResponsive">
     <ul class="navbar-nav ml-auto">
@@ -68,7 +67,7 @@
 <% end %>
 
 
-<% if request.fullpath == '/suggstr' %>
+<% if request.fullpath == '/suggstr' || request.fullpath.include?("completed") %>
   <%= yield %>
 <% else %>
   <div class="main container">
@@ -93,6 +92,7 @@
     </div>
     <% end %>
   <%= yield %>
+  <br><br>
   </div>
 <% end %>
 
@@ -100,7 +100,6 @@
 
 
 <!-- Footer -->
-<br><br>
 <footer class="py-3 bg-black">
 <div class="container">
 <p class="m-0 text-center text-white small">Copyright &copy; SuggstrGang 2019</p>

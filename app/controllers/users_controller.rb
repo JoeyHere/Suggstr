@@ -67,6 +67,7 @@ class UsersController < ApplicationController
   def completed
     @queued_medium = QueuedMedium.find_by(medium_id: params[:medium_id], user_id: params[:user_id])
     @queued_medium.update(completed:true)
+    @medium = Medium.find(params[:medium_id])
   end
 
   def rated
