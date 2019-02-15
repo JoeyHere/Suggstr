@@ -50,7 +50,7 @@
             <% if !medium.good_score %>
               <%="-"%>
             <% else %>
-              <%(medium.good_score*100/20).to_i.times do%>
+              <%(medium.avg_score*100/20).to_i.times do%>
                 <p style="display:inline">★</p>
               <%end%>
             <% end %>

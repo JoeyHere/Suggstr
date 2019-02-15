@@ -65,6 +65,10 @@ class Medium < ActiveRecord::Base
       self.rating_history[RatingRecord.categories.first]
     end
 
+    def avg_score
+      self.rating_history[RatingRecord.categories.first] + (self.rating_history[RatingRecord.categories.second])*0.6 + (self.rating_history[RatingRecord.categories.last])*0.2
+    end
+
     def title_with_type
       "#{self.title} (#{self.type.name})"
     end
