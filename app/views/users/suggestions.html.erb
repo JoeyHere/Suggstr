@@ -1,19 +1,32 @@
 
+<div class="shadow p-3 mb-5 bg-white rounded" style="width:95%; height:250; vertical-align:top; margin-right:auto; margin-left:auto" >
+
 <h2>Your Suggestions</h2>
 
-<ul>
+
 
 <% if @user.received_suggestions.length == 0  %>
-<li>You have no new suggestions </li>
+<h4>You have no new suggestions </h4>
 
-</ul>
 
-<%= button_to "browse media", media_path, method: :get %> <br>
+<%= button_to "browse media", media_path, method: :get, class:'btn' %>
 
 <% else %>
-<% @user.received_suggestions.each do |sug| %>
-<li><%= link_to "#{sug.medium.title} (#{sug.medium.type.name}) was suggested by #{sug.sender_object.name} #{time_ago_in_words(sug.created_at)} ago.", sug %></li>
-<% end %>
-</ul>
+
+<table class="table" >
+  <tbody>
+
+    <% @user.received_suggestions.each do |sug| %>
+      <tr>
+        <td> <%= link_to "#{sug.medium.title} (#{sug.medium.type.name}) was suggested by #{sug.sender_object.name} #{time_ago_in_words(sug.created_at)} ago.", sug %> </td>
+        <td> <%= link_to "<i class=\"fas fa-trash-alt\"></i>".html_safe, sug, method: 'delete', class:'btn btn-dark btn-sm ', style:"width:30px" %> </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
 
 <% end %>
+
+
+</div>

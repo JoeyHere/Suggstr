@@ -20,7 +20,7 @@
     <font size="1">(out of 5 stars)</font>
     <h3><%= number_to_percentage(@medium.rating_history["Good"]*100, precision: 0) %> of people really liked this <%= @medium.type.name %></h3>
   <% else %>
-    <h3> It's either really bad or no one has reviewd it yet </h3>
+    <h3> It's either really bad or no one has reviewed it yet </h3>
   <% end %>
   <p><%= pluralize(@medium.users.length, "user") %> <%= @medium.users.length == 1 ? "has" : "have" %> this in their queue</p>
   <br><br>
