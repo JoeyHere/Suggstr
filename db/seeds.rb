@@ -5,6 +5,7 @@ User.destroy_all
 Tag.destroy_all
 QueuedMedium.destroy_all
 Type.destroy_all
+RatingRecord.destroy_all
 
 User.create(name: "Joey", password: "password", admin: true, username: "xxJoey69xx", email: "joey@joey.com")
 User.create(name: "Shane", password: "password", admin: true, username: "shane", email: "shane@shane.com")

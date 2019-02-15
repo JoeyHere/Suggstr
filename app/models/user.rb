@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
       top_x = 5
       sub_list = []
       @@types.each do |type|
-        if category_list(type).size >= 5
+        if category_list(type).size >= top_x
           sub_list << category_list(type)[0..top_x-1]
         else
           sub_list << category_list(type)
@@ -94,8 +94,7 @@ class User < ActiveRecord::Base
   end
 
   def sort_by_time(unsorted_list)
-    unsorted_list.sort_by
+    return unsorted_list.sort_by{|m| m.updated_at}
   end
-
 
 end
