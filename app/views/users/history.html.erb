@@ -32,7 +32,7 @@
         <% @completed_media.each do |medium| %>
         <tr>
           <th scope="row"><%=n%></th>
-          <td><%= medium.title %></td>
+          <td><%=link_to(medium.title, medium,html_options = {:style=>'color:#000000;'})%></td>
           <td><%= medium.type.name %></td>
 
           <%@rating_record = RatingRecord.find_by(user_id: @user.id, medium_id: medium.id)%>
