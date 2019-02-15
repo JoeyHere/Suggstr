@@ -8,11 +8,11 @@ class SuggestionsController < ApplicationController
   def create
 
     @suggestion = Suggestion.new(suggestion_params)
-    receiver = User.find_by(name: params[:user][:name])
+    receiver = User.find_by(username: params[:user][:username])
     if receiver && receiver != current_user
       @suggestion.update(receiver_id: receiver.id, sender_id: current_user.id)
       @suggestion.save
-      flash[:message] = "#{@suggestion.receiver_object.name} has received your suggestion."
+      flash[:message] = "#{@suggestion.receiver_object.username} has received your suggestion."
       redirect_to dashboard_path
     else
       flash[:message] = "you cannot suggest media to yourself!"

@@ -48,7 +48,7 @@
 <!-- Navigation for none logged in userss-->
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
 <div class="container">
-  <a class="navbar-brand" href="#">Explore Suggstr</a>
+  <a class="navbar-brand" href="/">Explore Suggstr</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -73,18 +73,18 @@
   <div class="main container">
       <% if flash[:message] %>
         <div class="notice"><font color="green">
-          <ul>
-              <li>
+          <ul></ul>
+              <li></li>
                 <%= flash[:message] %>
               </li>
           </ul>
           </font>
         </div>
       <% end %>
-    <% if flash[:errors] %>
+    <% if flash.now[:errors] %>
       <div><font color="red">
       <ul>
-        <% flash[:errors].each do |error| %>
+        <% flash.now[:errors].each do |error| %>
           <li><%= error %></li>
         <% end %>
       </ul>

@@ -7,6 +7,7 @@ class MediaController < ApplicationController
   end
 
   def show
+    @queued_medium = QueuedMedium.new(user_id: current_user.id)
   end
 
   def new
@@ -17,7 +18,7 @@ class MediaController < ApplicationController
     @medium = Medium.find_or_create_by(medium_params)
 
     if !@medium.valid?
-      flash[:errors] = @medium.errors.full_messages
+      flash.now[:errors] = @medium.errors.full_messages
       render :new
     else
       tags = params[:tags].split(",").map {|tag| tag.downcase}

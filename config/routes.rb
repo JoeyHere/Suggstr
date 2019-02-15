@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
 
 
-  root 'sessions#new'
+  root 'wrapper#landing'
   resources :types
   resources :medium_tags
   resources :tags

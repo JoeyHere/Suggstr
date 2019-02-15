@@ -1,3 +1,5 @@
+<div class="shadow p-3 mb-5 bg-white rounded" style="width:70%; height:250; vertical-align:top; margin-right:auto; margin-left:auto" >
+
 <h3><%= @suggestion.sender_object.name %> has suggested <%= @suggestion.medium.title %> (<%= @suggestion.medium.type.name %>)</h3>
 
 <p><%= @suggestion.message %></p>
@@ -8,3 +10,4 @@
 <% end %>
 
 <%= link_to "<i class=\"fas fa-trash-alt\"></i>".html_safe, @suggestion, method: 'delete', class:'btn btn-light btn-sm' %>
+</div>

@@ -8,17 +8,16 @@
       <%= link_to "Podcasts  |", '/dashboard/Podcasts', method:'get', class: 'navbar-brand' %>
       <%= link_to "Add new+", new_medium_path, method:'get', class: 'navbar-brand' %>
 
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search by tag" aria-label="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-      </form>
-
+      <%= form_tag(dashboard_path, method: "get") do %>
+      <%= text_field_tag :q, nil ,class: 'navbar-brand', placeholder: 'filter by tag...' %>
+      <%= submit_tag "Go", class: 'btn btn-sm' %>
+      <% end %>
   </nav>
   <div class="small container">
     <% if @media == nil || @media == [] %>
       <br><br><br><br>
       <h2 class="text-center">Oh well.. </h2>
-      <h2 class="text-center">You haven't added anything yet</h2>
+      <h2 class="text-center">Nothing to see here</h2>
       <br>
       <div class="text-center"><a href=<%=media_path%> class="btn btn-dark btn-lg" role="button">Check out our amazing suggstr-base</a></div>
       <br><br><br><br><br><br>
