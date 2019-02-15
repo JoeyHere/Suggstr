@@ -82,10 +82,10 @@
           </font>
         </div>
       <% end %>
-    <% if flash[:errors] %>
+    <% if flash.now[:errors] %>
       <div><font color="red">
       <ul>
-        <% flash[:errors].each do |error| %>
+        <% flash.now[:errors].each do |error| %>
           <li><%= error %></li>
         <% end %>
       </ul>
