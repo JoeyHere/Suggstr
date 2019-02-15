@@ -19,8 +19,7 @@ class UsersController < ApplicationController
           redirect_to dashboard_path
       else
 
-          flash[:danger] = @user.errors.full_messages
-
+          flash[:danger] = @user.errors.full_message
 
           redirect_to new_user_path
       end
@@ -81,6 +80,7 @@ class UsersController < ApplicationController
     authorized_for((params[:user_id]))
     @media = @user.sorted_queued_list
     @completed_media = @user.completed_queued_list
+
   end
 
   def suggestions

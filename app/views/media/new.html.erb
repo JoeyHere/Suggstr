@@ -1,6 +1,7 @@
 
 
-<div>
+<div class="shadow p-3 mb-5 bg-white rounded" style="width:70%; height:250; vertical-align:top; margin-right:auto; margin-left:auto" >
+
 
 <h3>Add to queue:</h3>
 
@@ -9,7 +10,7 @@
 
   <%= f.label  "Title:" %>
   <input list="medium-titles" id="medium-choice" name="medium[title]" class="form-control"
-  placeholder="Enter the title to add to your que..." style="display: block; visibility: visible; width: 360px; top: 38px; left: 0px;"
+  placeholder="Enter the title to add to your queue..." style="display: block; visibility: visible; width: 360px; top: 38px; left: 0px;"
   value=<%=@medium.title if @medium.title %> >
 
   <datalist id="medium-titles">
@@ -19,7 +20,7 @@
   </datalist>
 
 
-  <%= f.collection_select :type_id, Type.all, :id, :name %>
+  <%= f.collection_select :type_id, Type.all, :id, :name, class:'dropdown-menu'%>
 
 
   <div class="selectize">

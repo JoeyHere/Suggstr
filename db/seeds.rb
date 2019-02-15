@@ -6,20 +6,34 @@ Tag.destroy_all
 QueuedMedium.destroy_all
 Type.destroy_all
 RatingRecord.destroy_all
+MediumTag.destroy_all
 
-User.create(name: "Joey", password: "password", admin: true, username: "xxJoey69xx", email: "joey@joey.com")
+#creating admins
+User.create(name: "Joey", password: "password", admin: true, username: "joey", email: "joey@joey.com")
 User.create(name: "Shane", password: "password", admin: true, username: "shane", email: "shane@shane.com")
 User.create(name: "Song", password: "password", admin: true, username: "song", email: "song@song.com")
 
-Type.create(name: "Book")
-Type.create(name: "TV Show")
-Type.create(name: "Movie")
-Type.create(name: "Video Game")
-Type.create(name: "Podcast")
+#creating trolls
+users = []
+User.all.each do |user|
+  n = 1
+  10.times do
+    new_name = user.name.split("").shuffle.join("").downcase.capitalize
+    new_password = "password"
+    new_admin = false
+    new_username = "#{new_name}#{n}"
+    new_email = "#{new_username.downcase}@#{user.name.downcase}.com"
+    n+=1
+    users << {name: new_name, password: new_password, admin: new_admin, username: new_username, email: new_email}
+  end
+end
+User.create(users)
 
-Tag.create(name: "Horror")
-Tag.create(name: "Animated")
-Tag.create(name: "Animals")
+types = [{name:"Book"}, {name:"TV Show"}, {name:"Movie"}, {name:"Video Game"}, {name:"Podcast"}]
+Type.create(types)
+
+tags = [{name:"horror"}, {name:"animated"}, {name:"animals"},{name:"sci-fi"},{name:"funny"},{name:"relaxing"},{name:"romcom"},{name:"intense"}]
+Tag.create(tags)
 
 movies = [
     {title: "Signs", type: Type.third},
@@ -578,17 +592,51 @@ Medium.create(tv_shows)
 Medium.create(podcasts)
 Medium.create(games)
 
-def random_medium_generator(x)
-  medium_ids = []
-  Medium.all.each {|m| medium_ids << m.id }
+
+medium_ids = []
+Medium.all.each {|m| medium_ids << m.id }
+def random_medium_generator(x, medium_ids)
   return medium_ids.sample(x)
+end
+
+
+user_ids = []
+User.all.each {|u| user_ids << u.id }
+def random_user_generator(x,user_ids)
+  return user_ids.sample(x)
+end
+
+
+tag_ids = []
+Tag.all.each {|t| tag_ids << t.id }
+def random_tag_generator(x,tag_ids)
+  return tag_ids.sample(x)
 end
 
 queued_media = []
 User.all.each do |user|
-  random_medium_generator(20).each do |medium_id|
+  random_medium_generator(20,medium_ids).each do |medium_id|
     queued_media << {user_id: user.id, medium_id: medium_id}
   end
 end
 
 QueuedMedium.create(queued_media)
+
+
+#creating ratings
+rating_records = []
+scores = ["Good", "Average", "Bad"]
+Medium.all.each do |medium|
+  random_user_generator(5,user_ids).each do |user_id|
+    rating_records << {user_id: user_id, medium_id: medium.id, rated_score: scores.sample(1)[0]}
+  end
+end
+RatingRecord.create(rating_records)
+
+#creating tags
+medium_tags = []
+Medium.all.each do |m|
+  rand(2..5).times do
+    m.tags << Tag.all.sample(1)
+  end
+end

@@ -18,7 +18,7 @@ class MediaController < ApplicationController
     @medium = Medium.find_or_create_by(medium_params)
 
     if !@medium.valid?
-      flash.now[:errors] = @medium.errors.full_messages
+      flash[:errors] = @medium.errors.full_messages
       render :new
     else
       tags = params[:tags].split(",").map {|tag| tag.downcase}

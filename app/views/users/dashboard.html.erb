@@ -9,7 +9,7 @@
       <%= link_to "Add new+", new_medium_path, method:'get', class: 'navbar-brand' %>
 
       <%= form_tag(dashboard_path, method: "get") do %>
-      <%= text_field_tag :q, nil ,class: 'navbar-brand', placeholder: 'filter by tag...' %>
+      <%= text_field_tag :q, nil ,class: 'navbar-brand', placeholder: 'filter by tag...', style:"color:#4c4c4c" %>
       <%= submit_tag "Go", class: 'btn btn-sm' %>
       <% end %>
   </nav>
@@ -50,7 +50,7 @@
             <% if !medium.good_score %>
               <%="-"%>
             <% else %>
-              <%(medium.good_score*100/20).to_i.times do%>
+              <%(medium.avg_score*100/20).to_i.times do%>
                 <p style="display:inline">★</p>
               <%end%>
             <% end %>
