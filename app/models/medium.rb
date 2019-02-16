@@ -62,11 +62,19 @@ class Medium < ActiveRecord::Base
     end
 
     def good_score
-      self.rating_history[RatingRecord.categories.first]
+      if !!self.rating_history[RatingRecord.categories.first]
+        return self.rating_history[RatingRecord.categories.first]
+      else
+        return 0
+      end
     end
 
     def avg_score
-      self.rating_history[RatingRecord.categories.first] + (self.rating_history[RatingRecord.categories.second])*0.6 + (self.rating_history[RatingRecord.categories.last])*0.2
+      if !self.rating_history.values.include?(nil)
+        return self.rating_history[RatingRecord.categories.first] + (self.rating_history[RatingRecord.categories.second])*0.6 + (self.rating_history[RatingRecord.categories.last])*0.2
+      else
+        return 0
+      end
     end
 
     def title_with_type

@@ -55,7 +55,7 @@
               <%end%>
             <% end %>
           </td>
-          <td><%=time_ago_in_words(queued_medium.updated_at)%> ago</td>
+          <td><%=time_ago_in_words(queued_medium.created_at)%> ago</td>
           <% if @sub != "Top List" && @sub != nil%>
             <td class="text-center">
               <%= link_to "<i class=\"fas fa-arrow-up\"></i>".html_safe, "/user/#{@user.id}/#{medium.id}/up", method: 'post', class:'btn btn-light btn-sm' %>
